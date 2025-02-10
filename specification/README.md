@@ -2,19 +2,140 @@
 Policy Zones is the collection of all defined zones of the mine that in some how are restricted for one or more vehicles. 
 
 ## Types of zones: 
-- Exclusion
-- ?
-- ?
-- ?
+- Exclusion (Truck MUST not enter)
+- SpeedLimit (Truck MUST reduce speed)
+- Road Conditions (Low Traction or Rough Road)
+
+
 
 ## Sequence diagram
+### Example 1
+![bild](https://github.com/user-attachments/assets/40e1f28f-4fe3-49ca-b0d1-0dda3aab3728)
+
+### Example 2
+
+### Example 3
+
+### Example 4
 
 ## General connection rules
 - All requests are done from FMS to AHS through HTTP and is done individal per autonomous vehicle. 
 - HTTP responses are only covering that message as such is accepted, i.e the AHS service is up
 - Responses regarding the content of the request is send through Websocket 
 
-## Activate hazard zone
+## Common Structure
+Each Policy Zone follows this basic structure
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "properties": {
+    "id": "uuid",
+    "name": "Zone Name",
+    "createdAt": "UTC timestamp",
+    "version": "integer",
+    "policies": {
+      // Policy objects go here
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Exclusion Zone
+An exclusion policy indicates that vehicles MUST not enter the zone while it exists.
+
+The behaviour of vehicles already inside the zone is controlled by the vacateBy property where:
+
+  *  Vehicles already inside the zone will operate as per normal until the vacateBy time has been reached
+
+    * Once the timeout has elapsed, all operations must cease immediately
+
+    * A vacateBy property matching the time the zone was created indicates that vehicles should cease all operations as soon as the zone is created
+
+    * Vehicles that leave the zone prior to the vacateBy time may continue normal operations outside the zone
+
+### Example 
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "properties": {
+    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+    "name": "Speed Limited Area",
+    "createdAt": "2024-04-04T05:05:47Z",
+    "version": 1,
+    "policies": {
+      "speedLimit": {
+        "type": "absolute",
+        "value": 20
+      }
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Speed Limit Zone
+A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone while it exists.
+The speed limit can be defined either as an absolute value in km/h or as a percentage of the typically operating speed of the vehicle in that location.
+NOTE: When multiple overlapping speed zones exist, the lowest speed limit applies.
+
+### Example 
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "properties": {
+    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+    "name": "Speed Limited Area",
+    "createdAt": "2024-04-04T05:05:47Z",
+    "version": 1,
+    "policies": {
+      "speedLimit": {
+        "type": "absolute",
+        "value": 20
+      }
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Road Conditions
+Road condition policies indicate that vehicles MUST adjust their driving behavior while inside the zone based on specified conditions. Two types of conditions are supported:
+Low Traction: Indicates reduced road grip
+Rough Road: Indicates poor road surface conditions
+Each condition is represented as a separate policy. The presence of a condition policy indicates that the condition applies to the zone.
+
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "properties": {
+    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+    "name": "Muddy Access Road",
+    "createdAt": "2024-04-04T05:05:47Z",
+    "version": 1,
+    "policies": {
+      "lowTraction": {},
+      "roughRoad": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+---
+
+## Activate Policy zone
 * `POST`            `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones`
 ```json
 {
