@@ -14,13 +14,21 @@
 | `"Zone.type"`    |  String   | Type of geo-spatial object (GeoJSON format). |
 | `"Zone.geometry.type"` | String   | The shape type of the zone in the GeoJSON format. |
 | `"Zone.geometry.coordinates"`  | Array    | List of latitude, longitude, and altitude points defining the zone. |
-| `"Zone.properties.id"` || UUID     | Unique identifier for the zone. |
+| `"Zone.properties.id"` | UUID     | Unique identifier for the zone. |
 | `"Zone.properties.version"`      | Integer  | Version number of this zone definition. |
 | `"Zone.properties.policyType"`     | String   | Defines the policy type (e.g., Exclusion). |
 | `"Zone.properties.name"`  | String   | Name of the zone. |
 | `"Zone.properties.created"` | ISO 8601 | Timestamp when the zone was created. |
 | `"Zone.properties.vacateBy"`| ISO 8601 | Time by which the area must be vacated. |
 
+
+## CRUD Methods
+| Operation               |   HTTP  Method  | Example |
+|------------------|----------|-------------|
+| `"CREATE 1 "`    | `POST`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones` |
+| `"ALL"`    | `POST`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/all` |
+| `"UPDATE"`    | `PUT`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/00000000-0000-0000-0000-000000000001` |
+| `"DELETE"`    | `DELETE`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/00000000-0000-0000-0000-000000000001` |
 
 ## Example of ActivateZoneRequestV1
 ```json
