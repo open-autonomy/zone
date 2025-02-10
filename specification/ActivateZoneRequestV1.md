@@ -30,6 +30,9 @@
 | `"UPDATE"`    | `PUT`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/00000000-0000-0000-0000-000000000001` |
 | `"DELETE"`    | `DELETE`              |  `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/00000000-0000-0000-0000-000000000001` |
 
+## Response
+The vehicle (or the AHS) shall response to the HTTP request. Normally `202 Accepted` to respond that the message as such is accepted. The content of the message and wether the trucks accept the request, will be handled in the [ActivateZoneResponseV1](ActivateZoneResponseV1.md) message
+
 ## Example of ActivateZoneRequestV1
 ```json
 {
