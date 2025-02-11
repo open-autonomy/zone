@@ -9,14 +9,8 @@ Policy Zones is the collection of all defined zones of the mine that in some how
 
 
 ## Sequence diagram
-### Example 1
-![bild](https://github.com/user-attachments/assets/40e1f28f-4fe3-49ca-b0d1-0dda3aab3728)
-
-### Example 2
-
-### Example 3
-
-### Example 4
+### Activate Policy Zone
+![bild](draw.io/ActivatePolicyZone.png)
 
 ## General connection rules
 - All requests are done from FMS to AHS through HTTP and is done individal per autonomous vehicle. 
