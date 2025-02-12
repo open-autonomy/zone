@@ -118,7 +118,6 @@ Each condition is represented as a separate policy. The presence of a condition 
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Muddy Access Road",
     "createdAt": "2024-04-04T05:05:47Z",
-    "version": 1,
     "policies": {
       "lowTraction": {},
       "roughRoad": {}
@@ -171,7 +170,6 @@ Each condition is represented as a separate policy. The presence of a condition 
         },
         "properties": {
             "id": "00000000-0000-0000-0000-000000000001",
-            "version": 5,
             "policyType": Exclusion,
             "name": "grading 1",
             "created": "2024-08-23T07:20:33.6652497Z",
@@ -192,76 +190,21 @@ Each condition is represented as a separate policy. The presence of a condition 
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Version": 5,
         "Status": "Accepted"
     }
 }
 ```
 ---
 ## Update existing hazard zone
-* `PUT`            `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones/00000000-0000-0000-0000-000000000001`
-```json
-content-type: application/json
-{
-    "Protocol": "Open-Autonomy",
-    "Timestamp": "2024-08-23T07:25:32.344Z",
-    "Zone": {
-        "type": "Feature",
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
-                [
-                    59.154612700275192,
-                    17.62123606784992
-                ],
-                [
-                    59.15444657134832,
-                    17.621361182777765
-                ],
-                [
-                    59.154458381940245,
-                    17.62176503107635
-                ],
-                [
-                    59.154774479447724,
-                    17.621645401146836
-                ],
-                [
-                    59.154612700275192,
-                    17.62123606784992
-                ]
-              ]
-            ]
-        },
-        "properties": {
-            "id": "00000000-0000-0000-0000-000000000001",
-            "version": 6,
-            "policyType": Exclusion,
-            "name": "grading 1",
-            "created": "2024-08-23T07:25:33.6652497Z",
-            "vacateBy": "2024-08-23T08:20:33.6652639Z"
-        }
-    }
-}
-```
+Policy zones contain a number of fields that are immutable. These include:
+- the geometry of the zone.
+- the set of policies (and their respective attribtues) associated with zone.
 
-* AHS response: `HTTP/1.1 202 Accepted`
+Edits made by end-users to these attributes must be managed through the following process:
+- Create a new policy zone reflecting the desired new state of the policy zone,
+- Delete the previous version of the policy zone.
 
-* The truck acceps the zone and AHS responds over Websocket
-```json
-{
-    "Protocol": "Open-Autonomy",
-    "CorrelationId": "71b0ac40-5b73-4444-ac37-dbf7e51e8186",
-    "Timestamp": "2024-08-23T07:20:35.344Z",
-    "ActivateZoneResponseV1": {
-        "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
-        "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Version": 5,
-        "Status": "Accepted"
-    }
-}
-```
+This is intended to remove any ambiguity about the state of the policy zone.
 
 ---
 # Publish all zones 
@@ -303,7 +246,6 @@ content-type: application/json
       },
       "properties": {
         "id": "00000000-0000-0000-0000-000000000001",
-        "version": 1,
         "policyType": "Exclusion",
         "name": "grading 1",
         "created": "2024-08-23T07:20:33.6652497Z",
@@ -341,7 +283,6 @@ content-type: application/json
       },
       "properties": {
         "id": "00000000-0000-0000-0000-000000000002",
-        "version": 1,
         "policyType": "Exclusion",
         "name": "grading 2",
         "created": "2024-08-23T07:20:33.6652497Z",
@@ -383,7 +324,6 @@ content-type: application/json
       },
       "properties": {
         "id": "00000000-0000-0000-0000-000000000003",
-        "version": 1,
         "policyType": "Exclusion",
         "name": "grading on-road",
         "created": "2024-08-23T07:20:33.6652497Z",
@@ -407,16 +347,13 @@ content-type: application/json
         "Status": "Accepted",
         "ActivatedZones": [
             {
-                "ZoneId": "00000000-0000-0000-0000-000000000001",
-                "Version": 1
+                "ZoneId": "00000000-0000-0000-0000-000000000001"
             },
             {
-                "ZoneId": "00000000-0000-0000-0000-000000000002",
-                "Version": 1
+                "ZoneId": "00000000-0000-0000-0000-000000000002"
             },
             {
-                "ZoneId": "00000000-0000-0000-0000-000000000003",
-                "Version": 1
+                "ZoneId": "00000000-0000-0000-0000-000000000003"
             }
         ]
     }
@@ -436,7 +373,6 @@ If the truck is offline when a request is sent to it, the response will be
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Version": 5,
         "Status": "Rejected",
         "Reason": "UnexpectedOffline"
     }
