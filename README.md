@@ -170,7 +170,7 @@ Each condition is represented as a separate policy. The presence of a condition 
         },
         "properties": {
             "id": "00000000-0000-0000-0000-000000000001",
-            "policyType": Exclusion,
+            "policyType": "Exclusion",
             "name": "grading 1",
             "created": "2024-08-23T07:20:33.6652497Z",
             "vacateBy": "2024-08-23T08:20:33.6652639Z"
