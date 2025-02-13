@@ -51,15 +51,15 @@ Each Policy Zone follows this basic structure
 ## Exclusion Zone
 An exclusion policy indicates that vehicles MUST not enter the zone while it exists.
 
-The behaviour of vehicles already inside the zone is controlled by the vacateBy property where:
+The behaviour of vehicles already inside the zone is controlled by the `vacateBy` property where:
 
-  *  Vehicles already inside the zone will operate as per normal until the vacateBy time has been reached
+  *  Vehicles already inside the zone will operate as per normal until the `vacateBy` time has been reached
 
-    * Once the timeout has elapsed, all operations must cease immediately
+ * Once the timeout has elapsed, all operations must cease immediately
 
-    * A vacateBy property matching the time the zone was created indicates that vehicles should cease all operations as soon as the zone is created
+ * A `vacateBy` property matching the time the zone was created indicates that vehicles should cease all operations as soon as the zone is created
 
-    * Vehicles that leave the zone prior to the vacateBy time may continue normal operations outside the zone
+ * Vehicles that leave the zone prior to the `vacateBy` time may continue normal operations outside the zone
 
 ### Example 
 ```json
@@ -70,11 +70,10 @@ The behaviour of vehicles already inside the zone is controlled by the vacateBy 
   },
   "properties": {
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-    "name": "Speed Limited Area",
+    "name": "Exclusion Area",
     "policies": {
-      "speedLimit": {
-        "type": "absolute",
-        "value": 20
+      "Exclusion": {
+        "vacateBy": "2024-04-04T06:05:47Z"
       }
     }
   },
@@ -83,8 +82,8 @@ The behaviour of vehicles already inside the zone is controlled by the vacateBy 
 ```
 
 ## Speed Limit Zone
-A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone while it exists.
-The speed limit can be defined either as an absolute value in km/h or as a percentage of the typically operating speed of the vehicle in that location.
+A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone while it is active.
+The speed limit can be defined either as an absolute value in km/h or as a percentage of the typical operating speed of the vehicle in that location.
 NOTE: When multiple overlapping speed zones exist, the lowest speed limit applies.
 
 ### Example 
@@ -110,8 +109,9 @@ NOTE: When multiple overlapping speed zones exist, the lowest speed limit applie
 
 ## Road Conditions
 Road condition policies indicate that vehicles MUST adjust their driving behavior while inside the zone based on specified conditions. Two types of conditions are supported:
-Low Traction: Indicates reduced road grip
-Rough Road: Indicates poor road surface conditions
+- Low Traction: Indicates reduced road grip
+- Rough Road: Indicates poor road surface conditions
+
 Each condition is represented as a separate policy. The presence of a condition policy indicates that the condition applies to the zone.
 
 ```json
@@ -337,7 +337,7 @@ This is intended to remove any ambiguity about the state of the policy zone.
 
 * AHS response: `HTTP/1.1 202 Accepted`
 
-* The truck acceps the zone and AHS responds over Websocket
+* The truck accepts the zone and AHS responds over Websocket
 ```json
 {
     "Protocol": "Open-Autonomy",
@@ -364,7 +364,7 @@ This is intended to remove any ambiguity about the state of the policy zone.
 ---
 
 # Truck is offline
-It is always the responsibility of the AHS to determine whether a policy zone is safe to activate. As it is expected that trucks will go offline from time to time. In the event that a truck is offline when a policy zone change is requested, the AHS may choose to:
+It is always the responsibility of the AHS to determine whether a policy zone is safe to activate, as it is expected that trucks will go offline from time to time. In the event that a truck is offline when a policy zone change is requested, the AHS may choose to:
 
  - reject the policy zone change request until the truck has re-established connection.
  - accept the policy zone change request if and only if the truck can be guaranteed to have come to a stop and is no longer in motion.
@@ -385,14 +385,12 @@ The following message provides an example of a policy zone change request that i
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Version": 5,
-        "Status": "Accepted",
-        "Reason": "ExpectedOffline"
+        "Status": "Accepted"
     }
 }
 ```
 
-* When the truck comes back online the truck shall send OutOfSync to FMS
+* When the truck comes back online the truck shall send OutOfSync to the FMS
 
 ```json
 {
@@ -405,7 +403,7 @@ The following message provides an example of a policy zone change request that i
 }
 ```
 
-* The FMS should then publish all active zones using the [Publish All Zones](#publish-all-zones) which will include the zones that were accepted after the truck was powered off.
+* The FMS should then publish all active zones to the truck using [Publish All Zones](#publish-all-zones), which will include the zones that were accepted after the truck was powered off.
 
 ### Loss of Comms Scenario 1 - Truck cannot be guaranteed to have come to a stop
 
@@ -429,7 +427,7 @@ The following message provides an example of a policy zone change request that i
 
 In such an event, the FMS may attempt to continue sending the policy zone change request until the truck has re-established connection.
 
-* When the truck comes back online the truck shall send OutOfSync to FMS
+* When the truck comes back online, the truck shall send OutOfSync to the FMS
 
 ```json
 {
@@ -441,8 +439,8 @@ In such an event, the FMS may attempt to continue sending the policy zone change
     }
 }
 ```
-* The FMS should then publish all active zones using the [Publish All Zones](#publish-all-zones), then,
-* Resend any policy zones that are still pending (inluding the zones that were rejected due to being unexpectedly offline).
+* The FMS should then publish all active zones to the truck using [Publish All Zones](#publish-all-zones), then
+* Resend any policy zones that are still pending (including the zones that were rejected due to being unexpectedly offline).
 
 ### Loss of Comms Scenario 2 - Truck comes to stop after comms loss timeout
 
@@ -458,14 +456,12 @@ The following message provides an example of a policy zone change request that i
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Version": 5,
-        "Status": "Accepted",
-        "Reason": "CommsLossTimeout"
+        "Status": "Accepted"
     }
 }
 ```
 
-* When the truck comes back online the truck shall send OutOfSync to FMS
+* When the truck comes back online the truck shall send OutOfSync to the FMS
 
 ```json
 {
@@ -478,6 +474,6 @@ The following message provides an example of a policy zone change request that i
 }
 ```
 
-* The FMS should then publish all active zones using the [Publish All Zones](#publish-all-zones) which will include the zones that were accepted after the truck came to a stop.
+* The FMS should then publish all active zones to the truck using [Publish All Zones](#publish-all-zones), which will include the zones that were accepted after the truck came to a stop.
 
 
