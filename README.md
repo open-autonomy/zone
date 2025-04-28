@@ -28,8 +28,6 @@ Each Policy Zone follows this basic structure
   "properties": {
     "id": "uuid",
     "name": "Zone Name",
-    "createdAt": "UTC timestamp",
-    "version": "integer",
     "policies": {
       // Policy objects go here
     }
@@ -61,8 +59,6 @@ The behaviour of vehicles already inside the zone is controlled by the vacateBy 
   "properties": {
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Speed Limited Area",
-    "createdAt": "2024-04-04T05:05:47Z",
-    "version": 1,
     "policies": {
       "speedLimit": {
         "type": "absolute",
@@ -89,8 +85,6 @@ NOTE: When multiple overlapping speed zones exist, the lowest speed limit applie
   "properties": {
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Speed Limited Area",
-    "createdAt": "2024-04-04T05:05:47Z",
-    "version": 1,
     "policies": {
       "speedLimit": {
         "type": "absolute",
@@ -117,7 +111,6 @@ Each condition is represented as a separate policy. The presence of a condition 
   "properties": {
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Muddy Access Road",
-    "createdAt": "2024-04-04T05:05:47Z",
     "policies": {
       "lowTraction": {},
       "roughRoad": {}
@@ -172,7 +165,6 @@ Each condition is represented as a separate policy. The presence of a condition 
             "id": "00000000-0000-0000-0000-000000000001",
             "policyType": "Exclusion",
             "name": "grading 1",
-            "created": "2024-08-23T07:20:33.6652497Z",
             "vacateBy": "2024-08-23T08:20:33.6652639Z"
         }
     }
@@ -248,7 +240,6 @@ This is intended to remove any ambiguity about the state of the policy zone.
         "id": "00000000-0000-0000-0000-000000000001",
         "policyType": "Exclusion",
         "name": "grading 1",
-        "created": "2024-08-23T07:20:33.6652497Z",
         "vacateBy": "2024-08-23T08:20:33.6652639Z"
       }
     },
@@ -285,7 +276,6 @@ This is intended to remove any ambiguity about the state of the policy zone.
         "id": "00000000-0000-0000-0000-000000000002",
         "policyType": "Exclusion",
         "name": "grading 2",
-        "created": "2024-08-23T07:20:33.6652497Z",
         "vacateBy": "2024-08-23T08:20:33.6652639Z"
       }
     },
@@ -326,7 +316,6 @@ This is intended to remove any ambiguity about the state of the policy zone.
         "id": "00000000-0000-0000-0000-000000000003",
         "policyType": "Exclusion",
         "name": "grading on-road",
-        "created": "2024-08-23T07:20:33.6652497Z",
         "vacateBy": "2024-08-23T08:20:33.6652639Z"
       }
     }
