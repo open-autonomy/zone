@@ -83,7 +83,7 @@ The behaviour of vehicles already inside the zone is controlled by the `vacateBy
 
 ## Speed Limit Zone
 A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone while it is active.
-The speed limit can be defined either as an absolute value in km/h or as a percentage of the typical operating speed of the vehicle in that location.
+The speed limit can be defined either as an absolute value in m/s or as a percentage of the typical operating speed of the vehicle in that location.
 NOTE: When multiple overlapping speed zones exist, the lowest speed limit applies.
 
 ### Example 
@@ -99,7 +99,7 @@ NOTE: When multiple overlapping speed zones exist, the lowest speed limit applie
     "policies": {
       "speedLimit": {
         "type": "absolute",
-        "value": 20
+        "value": 5.555
       }
     }
   },
