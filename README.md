@@ -21,11 +21,19 @@ The following state machine describes the lifecycle of a policy zone as it trans
 **Note**: Zones that are rejected are still considered pending and can be re-sent to the truck for activation at a later time.
 
 ## Sequence diagram
-### Activate Policy Zone
-![bild](draw.io/ActivatePolicyZone.png)
 
  * Policies must be activated at the latest at the `activationDeadline` time.
  * The `activationDeadline` is specified in UTC.
+
+### All Policy Zones Activated
+![image](draw.io/AllPolicyZonesActivated.svg)
+</br></br>
+### Single Policy Zone Activated
+![image](draw.io/PolicyZoneActivated.svg)
+</br></br>
+### Single Policy Zone Rejected
+![image](draw.io/PolicyZoneRejected.svg)
+
 
 ## General connection rules
 - All requests are done from FMS to AHS through HTTP and is done individal per autonomous vehicle. 
