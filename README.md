@@ -53,7 +53,8 @@ Each Policy Zone follows this basic structure
     "name": "Zone Name",
     "policies": {
       // Policy objects go here
-    }
+    },
+    "activationDeadline": "ISO8601 UTC" // Optional, if not specified the zone is activated immeadiately
   },
   "type": "Feature"
 }
