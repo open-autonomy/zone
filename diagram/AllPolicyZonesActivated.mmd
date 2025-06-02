@@ -11,11 +11,11 @@ sequenceDiagram
     AHS-->>FMS: Accept 202
     FMS-->>User: Pending
 
-    Equipment->>AHS: Activate (Zone 1)
+    Equipment->>AHS: Activated (Zone 1)
     AHS-->>FMS: ActivateZoneResponseV1 (Zone 1)
     FMS-->>User: Policy Zone 1 Active
 
-    Equipment->>AHS: Activate (Zone 2)
+    Equipment->>AHS: Activated (Zone 2)
     AHS-->>FMS: ActivateZoneResponseV1 (Zone 2)
     FMS-->>User: Policy Zone 2 Active
 
