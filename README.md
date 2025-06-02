@@ -24,6 +24,9 @@ The following state machine describes the lifecycle of a policy zone as it trans
 ### Activate Policy Zone
 ![bild](draw.io/ActivatePolicyZone.png)
 
+ * Policies must be activated at the latest at the `activationDeadline` time.
+ * The `activationDeadline` is specified in UTC.
+
 ## General connection rules
 - All requests are done from FMS to AHS through HTTP and is done individal per autonomous vehicle. 
 - HTTP responses are only covering that message as such is accepted, i.e the AHS service is up
@@ -51,16 +54,6 @@ Each Policy Zone follows this basic structure
 ## Exclusion Zone
 An exclusion policy indicates that vehicles MUST not enter the zone while it exists.
 
-The behaviour of vehicles already inside the zone is controlled by the `vacateBy` property where:
-
-  *  Vehicles already inside the zone will operate as per normal until the `vacateBy` time has been reached
-
- * Once the timeout has elapsed, all operations must cease immediately
-
- * A `vacateBy` property matching the time the zone was created indicates that vehicles should cease all operations as soon as the zone is created
-
- * Vehicles that leave the zone prior to the `vacateBy` time may continue normal operations outside the zone
-
 ### Example 
 ```json
 {
@@ -72,10 +65,9 @@ The behaviour of vehicles already inside the zone is controlled by the `vacateBy
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Exclusion Area",
     "policies": {
-      "Exclusion": {
-        "vacateBy": "2024-04-04T06:05:47Z"
-      }
-    }
+      "Exclusion": { }
+    },
+    "activationDeadline": "2024-04-04T06:05:47Z"
   },
   "type": "Feature"
 }
