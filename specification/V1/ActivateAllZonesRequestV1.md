@@ -36,7 +36,7 @@ The the attributes within the `Properties` object depends on the `policyType`
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | The time when the equipment should start acting on the policy zone by. **NOTE** it is a soft indication to suggest the equipment to start adhering to the policy, and not a hard command. |
+| `"activateDeadline"` | DateTime | ISO8601 UTC | False | The time when the equipment should start acting on the policy zone by **NOTE** it is a soft indication to suggest the equipment to start adhering to the policy, and not a hard command. |
 | `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. |
 
 **TODO** add different zone types here still ....
