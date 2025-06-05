@@ -116,4 +116,6 @@ sequenceDiagram
     Equipment 1->>AHS: Rejected
     AHS->>FMS: ActivateZoneResponseV1 (Zone 1): Status "Rejected"
     User-->-FMS: Pending
+    FMS-->>FMS: Policy Zone Pending
+    FMS-->>User: Error Message
 ```
