@@ -9,6 +9,8 @@ The following sections describes when the messages should be sent during the lif
 
 
 ## On Connect
+On connect between the FMS and AHS, the following information should be exchanged.
+
 ```mermaid
 sequenceDiagram
     participant FMS
@@ -22,49 +24,35 @@ sequenceDiagram
 
     FMS-->>FMS: Policy Zones Pending
 
-    FMS->>AHS: Sends All Existing Policy Zones
+    FMS->>AHS: Sends ActivateAllZonesRequestV1
 
-    par Zone 1 Equipment 1
+    par Equipment 1
         AHS->>Equipment 1: Activate Zone 1
-        Equipment 1->>Equipment 1: Adhers to Policy
+        Equipment 1->>Equipment 1: Adhers to Policies
         Equipment 1->>AHS: Activated
-        AHS->>FMS: Equipment 1 - Zone 1 <br /> ActivateZoneResponseV1: "Activated"
-    and Zone 1 Equipment N
+        AHS->>FMS: Equipment 1 <br /> ActivateAllZoneResponseV1
+    and Equipment N
         AHS->>Equipment N: Activate Zone 1
-        Note Over Equipment N: Unable to immediately adhere to policy
-        Equipment N->>AHS: Accepted
-        AHS->>FMS: Equipment N - Zone 1 <br /> ActivateZoneResponseV1: "Accepted"
-    and Zone N Equipment 1
-        AHS->>Equipment 1: Activate Zone N
-        Equipment 1->>Equipment 1: Adhers to Policy
-        Equipment 1->>AHS: Activated
-        AHS->>FMS: Equipment 1 - Zone N <br /> ActivateZoneResponseV1: "Activated"
-    and Zone N Equipment N
-        AHS->>Equipment 1: Activate Zone N
-        Equipment 1->>Equipment 1: Adhers to Policy
-        Equipment 1->>AHS: Activated
-        AHS->>FMS: Equipment N - Zone N<br /> ActivateZoneResponseV1: "Activated"
+        Equipment N->>Equipment N: Adhers to Policies
+        Equipment N->>AHS: Activated
+        AHS->>FMS: Equipment N <br /> ActivateZoneResponseV1
     end
 
-    Note Over FMS: All equipments activated Zone N
-
-    FMS-->>FMS: Zone N Activated
-    
-    Note Over Equipment N: Becomes able to adhere to policy
-    Equipment N->>Equipment N: Adhers to Policy
-    Equipment N->>AHS: Activated Zone 1
-    AHS->>FMS: Equipment N - Zone 1 <br /> ActivateZoneResponseV1: "Activated"
-
-    Note Over FMS: All equipments activated Zone 1
-
-    FMS-->>FMS: Zone N Activated
+    par
+        Note Over FMS: All equipments activated Zone 1
+        FMS-->>FMS: Zone 1 Activated
+    and
+        Note Over FMS: All equipments activated Zone N
+        FMS-->>FMS: Zone N Activated
+    end
 
 ```
 
 NOTE: The above diagram is a typical flow of the on connect sequence for policy zone between the FMS and AHS systems.
 
 
-## Policy Zone Creation and Activation
+## Policy Zone Activation
+When a policy zone is created, it should follow the following sequence to activate the policy zone between AHS and FMS system
 ```mermaid
 sequenceDiagram
     participant User
@@ -77,23 +65,58 @@ sequenceDiagram
     User->>FMS: Create Policy Zone
     FMS-->>FMS: Policy Zone Pending
     FMS-->+User: Pending
-    FMS->>AHS: Send Policy Zone
-    AHS->>Equipment 1: Activate Policy Zone
-    AHS->>Equipment N: Activate Policy Zone
-    Equipment 1->>Equipment 1: Adhers to Policy
-    Equipment 1->>AHS: Activated
-    AHS->>FMS: ActivateZoneResponseV1 (Zone 1): Status "Activated"
-
-    Note Over Equipment N: Unable to immediately adhere to policy
-    Equipment N->>AHS: Accept
-    AHS->>FMS: ActivateZoneResponseV1 (Zone 1): Status "Accepted"
-
+    FMS->>AHS: Send ActivateZoneRequestV1
+    par Equipment 1
+        AHS->>Equipment 1: Activate Policy Zone
+        Equipment 1->>Equipment 1: Adhers to Policy
+        Equipment 1->>AHS: Activated
+        AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
+    and Equipment N
+        AHS->>Equipment N: Activate Policy Zone
+        Note Over Equipment N: Unable to immediately adhere to policy
+        Equipment N->>AHS: Accept
+        AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+    end 
     Note Over Equipment N: Becomes able to adhere to policy
     Equipment N->>Equipment N: Adhers to Policy
-    Equipment N->>AHS: Activated (Zone 1)
+    Equipment N->>AHS: Activated
     
-    AHS->>FMS: ActivateZoneResponseV1 (Zone 1): Status "Activated"
+    AHS->>FMS: Equipment N <br/> ActivateZoneResponseV1: Status "Activated"
     User-->-FMS: Pending
+    Note Over FMS: All equipments activated Policy Zone
+    FMS-->>FMS: Policy Zone Activated
+    FMS-->>User: Policy Zone Activated
+```
+
+## Policy Zone Activation Deadline Exceed
+The policy zone can be created with a `activationDealine` property. This field is an indicative field that lets the equipment know it should start to adher to the policy if possible. However, it is not a strict demand that the equipment must comply by the specified time.
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment 1
+
+    Note over FMS,Equipment 1: On Connect Sequence
+    User->>FMS: Create Policy Zone <br/> with Activation Deadline
+    FMS-->>FMS: Policy Zone Pending
+    FMS-->+User: Pending
+    FMS->>AHS: Send ActivateZoneRequestV1
+    AHS->>Equipment 1: Activate Policy Zone
+
+    Note Over Equipment 1: Unable to immediately adhere to policy
+    Equipment 1->>AHS: Accept
+    AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+
+    Note Over Equipment 1: Activation Dealine Exceeded
+    Note Over Equipment 1: Proceed to Adher to Policy ...
+    Equipment 1->>Equipment 1: Adhers to Policy
+    Equipment 1->>AHS: Activated
+    
+    AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
+    User-->-FMS: Pending
+    Note Over FMS: All equipments activated Policy Zone
     FMS-->>FMS: Policy Zone Activated
     FMS-->>User: Policy Zone Activated
 ```
@@ -110,7 +133,7 @@ sequenceDiagram
     User->>FMS: Create Policy Zone
     FMS-->>FMS: Policy Zone Pending
     FMS-->+User: Pending
-    FMS->>AHS: Send Policy Zone
+    FMS->>AHS: Send ActivateZoneRequestV1
     AHS->>Equipment 1: Activate Policy Zone
     Note Over Equipment 1: Cannot Adher to policy
     Equipment 1->>AHS: Rejected
@@ -118,4 +141,98 @@ sequenceDiagram
     User-->-FMS: Pending
     FMS-->>FMS: Policy Zone Pending
     FMS-->>User: Error Message
+```
+
+## Policy Zone Delete
+
+Assuming the policy zone already exist and the equipments are aware of the policy zone
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment 1
+    participant Equipment N
+
+    Note over FMS,Equipment 1: On Connect Sequence
+    User->>FMS: Delete Policy Zone
+    FMS-->>FMS: Policy Zone Pending Delete
+    FMS-->+User: Pending Delete
+    FMS->>AHS: Sends DeactivateZoneRequestV1
+
+    par
+        AHS->>Equipment 1: Activate Policy Zone
+        Equipment 1->>AHS: Accept
+        AHS->>FMS: DeactivateZoneResponseV1
+    and
+        AHS->>Equipment N: Activate Policy Zone
+        Equipment N->>AHS: Accept
+        AHS->>FMS: DeactivateZoneResponseV1
+    end
+
+    User-->-FMS: Pending Delete
+
+    Note Over FMS: All equipments deactivated Policy Zone
+    FMS-->>FMS: Policy Zone Deleted
+    FMS-->>User: Policy Zone Deleted
+```
+
+## Policy Zone Update
+Given some of the properties of the policy zone are immutable, the FMS will require a deletion on the old policy zone, and create a new policy zone with the new updated information.
+
+Assuming the policy zone already exist and the equipments are aware of the policy zone
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment 1
+    participant Equipment N
+
+    Note over FMS,Equipment 1: On Connect Sequence
+    User->>FMS: Updated Policy Zone
+    FMS-->>FMS: Old Policy Zone Pending Delete
+    FMS-->+User: Old Policy Zone Pending Delete
+    FMS-->>FMS: New Policy Zone Pending
+    FMS-->+User: Pending
+
+    par
+        FMS->>AHS: Sends DeactivateZoneRequestV1
+
+        par
+            AHS->>Equipment 1: Activate Old Policy Zone
+            Equipment 1->>AHS: Accept
+            AHS->>FMS: DeactivateZoneResponseV1
+        and
+            AHS->>Equipment N: Activate Old Policy Zone
+            Equipment N->>AHS: Accept
+            AHS->>FMS: DeactivateZoneResponseV1
+        end
+
+    and 
+        FMS->>AHS: Send ActivateZoneRequestV1
+        par
+            AHS->>Equipment 1: Activate New Policy Zone
+            Equipment 1->>Equipment 1: Adhers to New Policy
+            Equipment 1->>AHS: Activated
+            AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
+        and
+            AHS->>Equipment N: Activate New Policy Zone
+            Equipment N->>Equipment N: Adhers to New Policy
+            Equipment N->>AHS: Activated
+            AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
+        end
+    end
+    
+    User-->-FMS: New Policy Zone Pending
+    Note Over FMS: All equipments activated New Policy Zone
+    FMS-->>FMS: New Policy Zone Activated
+
+    User-->-FMS: Old Policy Zone Pending Delete
+    Note Over FMS: All equipments deactivated Old Policy Zone
+    FMS-->>FMS: Old Policy Zone Deleted
+
+    FMS-->>User: Updated Policy Zone Activated
 ```
