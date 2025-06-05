@@ -62,13 +62,15 @@ sequenceDiagram
     FMS-->>FMS: Policy Zone Pending
     FMS-->+User: Pending
     par Equipment 1
-        FMS->>AHS: Send ActivateZoneRequestV1 to Equipment 1
+        FMS->>+AHS: Send ActivateZoneRequestV1 to Equipment 1
+        AHS-->>-FMS: Accept 202 (REST)
         AHS->>Equipment 1: Activate Policy Zone
         Equipment 1->>Equipment 1: Adheres to Policy
         Equipment 1->>AHS: Activated
         AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
     and Equipment N
-        FMS->>AHS: Send ActivateZoneRequestV1 to Equipment N
+        FMS->>+AHS: Send ActivateZoneRequestV1 to Equipment N
+        AHS-->>-FMS: Accept 202 (REST)
         AHS->>Equipment N: Activate Policy Zone
         Note Over Equipment N: Unable to immediately adhere to policy
         Equipment N->>AHS: Accept
@@ -84,6 +86,10 @@ sequenceDiagram
     FMS-->>FMS: Policy Zone Activated
     FMS-->>User: Policy Zone Activated
 ```
+
+**Note** This sequence diagram example is to show the implementation if using REST protocol for sending the message. The response from REST is not an indicative of the message being processed and accepted, but that the request is received and accepted by the server.
+
+As shown in the above diagram, the REST response should never should be used as an replacement for the `ActivateZoneResponse` message
 
 ## Policy Zone Activation Deadline Exceed
 The policy zone can be created with a `activationDealine` property. This field is an indicative field that lets the equipment know it should start to adhere to the policy if possible. However, it is not a strict demand that the equipment must comply by the specified time.
