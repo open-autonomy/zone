@@ -8,49 +8,6 @@ The following sections describes when the messages should be sent during the lif
 | FMS | Fleet Management System |
 
 
-## On Connect
-On connect between the FMS and AHS, the following information should be exchanged.
-
-```mermaid
-sequenceDiagram
-    participant FMS
-    participant AHS
-    participant Equipment 1
-    participant Equipment N
-
-    AHS->FMS: Connection Established
-    FMS->>+AHS: Get Fleet Definition
-    AHS-->>-FMS: Fleet Definition
-
-    FMS-->>FMS: Policy Zones Pending
-
-    FMS->>AHS: Sends ActivateAllZonesRequestV1
-
-    par Equipment 1
-        AHS->>Equipment 1: Activate Zone 1
-        Equipment 1->>Equipment 1: Adhers to Policies
-        Equipment 1->>AHS: Activated
-        AHS->>FMS: Equipment 1 <br /> ActivateAllZoneResponseV1
-    and Equipment N
-        AHS->>Equipment N: Activate Zone 1
-        Equipment N->>Equipment N: Adhers to Policies
-        Equipment N->>AHS: Activated
-        AHS->>FMS: Equipment N <br /> ActivateZoneResponseV1
-    end
-
-    par
-        Note Over FMS: All equipments activated Zone 1
-        FMS-->>FMS: Zone 1 Activated
-    and
-        Note Over FMS: All equipments activated Zone N
-        FMS-->>FMS: Zone N Activated
-    end
-
-```
-
-NOTE: The above diagram is a typical flow of the on connect sequence for policy zone between the FMS and AHS systems.
-
-
 ## Policy Zone Activation
 When a policy zone is created, it should follow the following sequence to activate the policy zone between AHS and FMS system
 ```mermaid
