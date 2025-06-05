@@ -1,4 +1,4 @@
-# ActivateZoneRequestV1
+# ActivateAllZonesRequestV1
 
 This message is sent by the FMS to the AHS to provide equipment with the zones that existed and should be adher to. Typically sent on connection.
 
@@ -49,7 +49,7 @@ The the attributes within the `Properties` object depends on the `policyType`
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
-  "ActivateZoneRequestV1": {
+  "ActivateAllZonesRequestV1": {
     "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "Zones": [
         {

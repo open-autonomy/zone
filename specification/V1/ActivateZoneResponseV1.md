@@ -1,10 +1,10 @@
 # ActivateZoneReposneV1
 
-This message is sent by the AHS in response to the `ActivateZoneRequestV1` or `ActivateAllZonesRequestV1` messages
+This message is sent by the AHS in response to the `ActivateZoneRequestV1` messages
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | `ActivateAllZonesRequestV1` or `ActivateZoneRequestV1` |  |
+| `AHS`  | `ActivateZoneRequestV1` |  |
 
 
 ## Message Attributes
@@ -13,7 +13,7 @@ The `ActivateZoneReposneV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponse request message |
+| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the equipment have accepted, activated or rejected the policy zone request.<br/>- `Accepted`: Unable to adher to policy zone as of now, but will comply when able  to.<br/>- `Activated`: Adher to policy zone.<br/>- `Rejected`: Cannot adher to policy zone |
 | `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |

@@ -12,7 +12,7 @@ The `DeactivateZoneResponseV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponse request message |
+| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Accepted`] | String | True |  |
 

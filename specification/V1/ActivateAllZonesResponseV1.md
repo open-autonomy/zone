@@ -1,4 +1,4 @@
-# ActivateAllZonesReposneV1
+# ActivateAllZonesResponseV1
 
 This message is sent by the AHS in response to the `ActivateAllZonesRequestV1` messages
 
@@ -9,16 +9,16 @@ This message is sent by the AHS in response to the `ActivateAllZonesRequestV1` m
 
 ## Message Attributes
 
-The `ActivateAllZonesReposneV1` message consist the following properties
+The `ActivateAllZonesResponseV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponse request message |
+| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
 | `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the equipment have accepted the policy zones request|
 | `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the equipment |
 
 
-**NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `ActivateZoneResponseV1` message 
+**NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `ActivateAllZonesResponseV1` message 
 
 ### ZoneIdObject
 | Key | Value | Format | Required | Description |

@@ -8,7 +8,7 @@ This message is sent by the FMS to the AHS to indicate a policy zone have been c
 
 ## Message Attributes
 
-The `ActivateZoneReposneV1` message consist of the following properties.
+The `ActivateZoneResponseV1` message consist of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
