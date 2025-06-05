@@ -1,6 +1,6 @@
 # ActivateAllZonesResponseV1
 
-This message is sent by the AHS in response to the `ActivateAllZonesRequestV1` messages
+This message is sent by the AHS in response to the `ActivateAllZonesRequestV1` messages.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -14,9 +14,8 @@ The `ActivateAllZonesResponseV1` message consist the following properties
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
-| `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the equipment have accepted the policy zones request|
+| `"Status"` | [`Accepted`, `Rejected`] | String | True | Determine whether the equipment have accepted the policy zones request. <br/> - `Accepted`: The equipment can and adhere to the policy zonees. <br/> - `Rejected`: Cannot adhere to the policy. The equipment cannot move until it can adhere to the policies |
 | `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the equipment |
-
 
 **NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `ActivateAllZonesResponseV1` message 
 

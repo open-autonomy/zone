@@ -4,7 +4,7 @@ This message is sent by the FMS to the AHS to provide equipment with the zones t
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | On Connection | The equipment to start accepting and adher to the policy zones, and fire off `ActivateAllZonesResponseV1` messages |
+| `AHS`  | equipment out of sync | The equipment to adher to the existing activated policy zones, and fire off `ActivateAllZonesResponseV1` messages |
 
 ## Message Attributes
 
@@ -14,6 +14,8 @@ The `ActivateAllZoneReposneV1` is
 | --- | :---: | :---: | :---: | --- |
 | `"RequestId"` | RequestId | UUID | True | The request ID of the message |
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
+
+**NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateAllZonesRequestV1` message is for. 
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -49,6 +51,7 @@ The the attributes within the `Properties` object depends on the `policyType`
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
+  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "ActivateAllZonesRequestV1": {
     "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "Zones": [

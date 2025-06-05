@@ -15,6 +15,8 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | `"RequestId"` | RequestId | UUID | True | The request ID of the message |
 | `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
 
+**NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateZoneRequestV1` message is for. 
+
 ### Zone Object
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
@@ -49,6 +51,7 @@ The the attributes within the `Properties` object depends on the `policyType`
     "Protocol": "Open-Autonomy",
     "Version": 1,
     "Timestamp": "2021-09-01T12:00:00Z",
+    "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
     "ActivateZoneRequestV1": {
         "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
         "Zone": {
