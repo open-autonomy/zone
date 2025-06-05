@@ -13,6 +13,7 @@ The `ActivateAllZonesReposneV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
+| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponse request message |
 | `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the equipment have accepted the policy zones request|
 | `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the equipment |
 
@@ -34,6 +35,7 @@ The `ActivateAllZonesReposneV1` message consist the following properties
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "ActivateAllZonesResponseV1": {
+    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "Status": "Accepted",
     "ActivatedZones": [
       {

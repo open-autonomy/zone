@@ -8,8 +8,14 @@ This message is sent by the FMS to the AHS to indicate a policy zone have been c
 
 ## Message Attributes
 
-The `ActivateZoneReposneV1` is a single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties.
+The `ActivateZoneReposneV1` message consist of the following properties.
 
+| Key | Value | Format | Required | Description |
+| --- | :---: | :---: | :---: | --- |
+| `"RequestId"` | RequestId | UUID | True | The request ID of the message |
+| `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
+
+### Zone Object
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"type"` | `Feature` | String | True | The feature type |
@@ -44,44 +50,47 @@ The the attributes within the `Properties` object depends on the `policyType`
     "Version": 1,
     "Timestamp": "2021-09-01T12:00:00Z",
     "ActivateZoneRequestV1": {
-        "type": "Feature",
-        "geometry": {
-            "type": "Polygon",
-            "coordinates": [
-              [
+        "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
+        "Zone": {
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
                 [
-                    59.154612700275194,
-                    17.62123606784992,
-                    0
-                ],
-                [
-                    59.15444657134832,
-                    17.621361182777765,
-                    0
-                ],
-                [
-                    59.154458381940245,
-                    17.62176503107635,
-                    0
-                ],
-                [
-                    59.154774479447724,
-                    17.621645401146836,
-                    0
-                ],
-                [
-                    59.154612700275194,
-                    17.62123606784992,
-                    0
+                    [
+                        59.154612700275194,
+                        17.62123606784992,
+                        0
+                    ],
+                    [
+                        59.15444657134832,
+                        17.621361182777765,
+                        0
+                    ],
+                    [
+                        59.154458381940245,
+                        17.62176503107635,
+                        0
+                    ],
+                    [
+                        59.154774479447724,
+                        17.621645401146836,
+                        0
+                    ],
+                    [
+                        59.154612700275194,
+                        17.62123606784992,
+                        0
+                    ]
                 ]
-              ]
-            ]
-        },
-        "properties": {
-            "id": "00000000-0000-0000-0000-000000000001",
-            "policyType": "Exclusion",
-            "name": "grading 1",
-            "vacateBy": "2024-08-23T08:20:33.6652639Z"
+                ]
+            },
+            "properties": {
+                "id": "00000000-0000-0000-0000-000000000001",
+                "policyType": "Exclusion",
+                "name": "grading 1",
+                "vacateBy": "2024-08-23T08:20:33.6652639Z"
+            }
         }
     }
 }

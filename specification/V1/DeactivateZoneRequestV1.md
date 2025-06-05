@@ -12,6 +12,7 @@ The `DeactivateZoneRequestV1` message consist the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
+| `"RequestId"` | RequestId | UUID | True | The request ID of the message |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 
 
@@ -23,6 +24,7 @@ The `DeactivateZoneRequestV1` message consist the following properties.
   "Version": 1,
   "Timestamp": "2021-09-01T12:00:00Z",
   "DeactivateZoneRequestV1": {
+    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "ZoneId": "123e4567-e89b-12d3-a456-426614174000",
   }
 }

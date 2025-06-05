@@ -8,8 +8,14 @@ This message is sent by the FMS to the AHS to provide equipment with the zones t
 
 ## Message Attributes
 
-The `ActivateAllZoneReposneV1` is an array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties.
+The `ActivateAllZoneReposneV1` is 
 
+| Key | Value | Format | Required | Description |
+| --- | :---: | :---: | :---: | --- |
+| `"RequestId"` | RequestId | UUID | True | The request ID of the message |
+| `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
+
+### Zone Object
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"type"` | `Feature` | String | True | The feature type |
@@ -43,119 +49,122 @@ The the attributes within the `Properties` object depends on the `policyType`
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
-  "ActivateZoneRequestV1": [
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-         [
-          [
-            59.154612700275194,
-            17.62123606784992
-          ],
-          [
-            59.15444657134832,
-            17.621361182777765
-          ],
-          [
-            59.154458381940245,
-            17.62176503107635
-          ],
-          [
-            59.154774479447724,
-            17.621645401146836
-          ],
-          [
-            59.154612700275194,
-            17.62123606784992
-          ]
-         ]
-        ]
-      },
-      "properties": {
-        "id": "00000000-0000-0000-0000-000000000001",
-        "policyType": "Exclusion",
-        "name": "grading 1",
-        "vacateBy": "2024-08-23T08:20:33.6652639Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-         [
-          [
-            59.154244958079,
-            17.620554410746
-          ],
-          [
-            59.154391048629,
-            17.620733999199
-          ],
-          [
-            59.154275508018,
-            17.621266018812
-          ],
-          [
-            59.154121113519,
-            17.621085793262
-          ],
-          [
-            59.154244958079,
-            17.620554410746
-          ]
-         ]
-        ]
-      },
-      "properties": {
-        "id": "00000000-0000-0000-0000-000000000002",
-        "policyType": "Exclusion",
-        "name": "grading 2",
-        "vacateBy": "2024-08-23T08:20:33.6652639Z"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-         [
-          [
-            59.154998915988,
-            17.621767651459
-          ],
-          [
-            59.154835229909,
-            17.621800464999
-          ],
-          [
-            59.154847165895,
-            17.622115535915
-          ],
-          [
-            59.155000821112,
-            17.622085194746
-          ],
-          [
-            59.15499725505,
-            17.621767524328
-          ],
-          [
-            59.154998915988,
-            17.621767651459
-          ]
-         ]
-        ]
-      },
-      "properties": {
-        "id": "00000000-0000-0000-0000-000000000003",
-        "policyType": "Exclusion",
-        "name": "grading on-road",
-        "vacateBy": "2024-08-23T08:20:33.6652639Z"
-      }
-    }
-  ]
+  "ActivateZoneRequestV1": {
+    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
+    "Zones": [
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+            [
+                59.154612700275194,
+                17.62123606784992
+            ],
+            [
+                59.15444657134832,
+                17.621361182777765
+            ],
+            [
+                59.154458381940245,
+                17.62176503107635
+            ],
+            [
+                59.154774479447724,
+                17.621645401146836
+            ],
+            [
+                59.154612700275194,
+                17.62123606784992
+            ]
+            ]
+            ]
+        },
+        "properties": {
+            "id": "00000000-0000-0000-0000-000000000001",
+            "policyType": "Exclusion",
+            "name": "grading 1",
+            "vacateBy": "2024-08-23T08:20:33.6652639Z"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+            [
+                59.154244958079,
+                17.620554410746
+            ],
+            [
+                59.154391048629,
+                17.620733999199
+            ],
+            [
+                59.154275508018,
+                17.621266018812
+            ],
+            [
+                59.154121113519,
+                17.621085793262
+            ],
+            [
+                59.154244958079,
+                17.620554410746
+            ]
+            ]
+            ]
+        },
+        "properties": {
+            "id": "00000000-0000-0000-0000-000000000002",
+            "policyType": "Exclusion",
+            "name": "grading 2",
+            "vacateBy": "2024-08-23T08:20:33.6652639Z"
+        }
+        },
+        {
+        "type": "Feature",
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+            [
+            [
+                59.154998915988,
+                17.621767651459
+            ],
+            [
+                59.154835229909,
+                17.621800464999
+            ],
+            [
+                59.154847165895,
+                17.622115535915
+            ],
+            [
+                59.155000821112,
+                17.622085194746
+            ],
+            [
+                59.15499725505,
+                17.621767524328
+            ],
+            [
+                59.154998915988,
+                17.621767651459
+            ]
+            ]
+            ]
+        },
+        "properties": {
+            "id": "00000000-0000-0000-0000-000000000003",
+            "policyType": "Exclusion",
+            "name": "grading on-road",
+            "vacateBy": "2024-08-23T08:20:33.6652639Z"
+        }
+        }
+    ]
+  }
 }
 ```
