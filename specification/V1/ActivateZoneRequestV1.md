@@ -35,9 +35,9 @@ The the attributes within the `Properties` object depends on the `policyType`
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
-| `"policyType"` | [`Exclusion`, ``, ``, ``] | String | True | The policy zone type |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | The time when the equipment should start acting on the policy zone by. **NOTE** it is a soft indication to suggest the equipment to start adhering to the policy, and not a hard command. |
+| `"activateDeadline"` | DateTime | ISO8601 UTC | False | The time when the equipment should start acting on the policy zone by **NOTE** it is a soft indication to suggest the equipment to start adhering to the policy, and not a hard command. |
+| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. |
 
 **TODO** add different zone types here still ....
 
@@ -87,9 +87,11 @@ The the attributes within the `Properties` object depends on the `policyType`
             },
             "properties": {
                 "id": "00000000-0000-0000-0000-000000000001",
-                "policyType": "Exclusion",
                 "name": "grading 1",
-                "vacateBy": "2024-08-23T08:20:33.6652639Z"
+                "policies": {
+                    "Exclusion": { }
+                },
+                "activationDeadline": "2024-04-04T06:05:47Z"
             }
         }
     }
