@@ -26,6 +26,29 @@ An exclusion policy indicates that vehicles MUST not enter the zone.
 }
 ```
 
+## Controlled Access
+
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
+A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
+
+### Example 
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "properties": {
+    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+    "name": "Controlled Access Area",
+    "policies": {
+      "controlledAccess": {}
+    }
+  },
+  "type": "Feature"
+}
+```
 
 
 

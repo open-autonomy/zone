@@ -1,5 +1,5 @@
 # Policy Zones
-Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with whichever policy has been associated with the zone. Examples of Policy Zones include: Exclusion Zones, where AHTs are forbidden to enter or driving within the zone; Speed Limited Zones, in which AHTs are required to regulate their speeds to comply with specific limits; and Controlled Work Zones, where AHTs may only enter if permitted.
+Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
 
 ## Policy Zone State Machine
 
@@ -11,7 +11,7 @@ Policy zones have a lifecycle that is managed by the FMS. This lifecycle include
 
 The following state machine describes the lifecycle of a policy zone as it transitions between these states:
 
-![Policy Zone State Machine](draw.io/PolicyZoneStateMachine.png)
+![Policy Zone State Machine](draw.io/PolicyZoneStateMachine.svg)
 
 **Note**: Zones that are rejected are still considered pending and can be re-sent to the truck for activation at a later time.
 
