@@ -1,8 +1,8 @@
-# Message Headers
+# Message Header
 
-This document records the header attributes that will be at the top-level of the spot messages.
+This document describes the top-level data structure that serves as a message header for all other messages defined within this specification.
 
-## Message headers
+## Message Attributes
 | Key | Value | Format | Required | Description |
 | --- |:---:|:---:|:---:| --- |
 | `"Protocol"` | `"Open-Autonomy"` | string | True | The protocol of the messages. |
@@ -10,8 +10,9 @@ This document records the header attributes that will be at the top-level of the
 | `"Timestamp"` | DateTime | ISO 8601 | True | The date-time of when the message is sent in ISO 8601 format. |
 | `"EquipmentId"` | EquipmentId | UUID | False | The UUID identifying the vehicle defined in the fleet definition, indicating the equipment that the message is intended for or from. This shall be in all messages except for ServiceIdentification |
 
-### Message Headers Examples
-Message headers for `MachineTeleoperationRequestV1` message
+### Message Header Examples
+An example `ActivateZoneRequestV1` enclosed in the message header data structure
+
 ```JSON
 {
   "Protocol":"Open-Autonomy",

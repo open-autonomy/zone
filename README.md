@@ -1,10 +1,5 @@
 # Policy Zones
-Policy Zones is the collection of all defined zones of the mine that in some how are restricted for one or more vehicles. 
-
-## Types of zones: 
-- Exclusion (Truck MUST not enter)
-- SpeedLimit (Truck MUST reduce speed)
-- Road Conditions (Low Traction or Rough Road)
+Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with whichever policy has been associated with the zone. Examples of Policy Zones include: Exclusion Zones, where AHTs are forbidden to enter or driving within the zone; Speed Limited Zones, in which AHTs are required to regulate their speeds to comply with specific limits; and Controlled Work Zones, where AHTs may only enter if permitted.
 
 ## Policy Zone State Machine
 
@@ -60,79 +55,7 @@ Each Policy Zone follows this basic structure
 }
 ```
 
-## Exclusion Zone
-An exclusion policy indicates that vehicles MUST not enter the zone while it exists.
 
-### Example 
-```json
-{
-  "geometry": {
-    "coordinates": ...,
-    "type": "Polygon"
-  },
-  "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-    "name": "Exclusion Area",
-    "policies": {
-      "Exclusion": { }
-    },
-    "activationDeadline": "2024-04-04T06:05:47Z"
-  },
-  "type": "Feature"
-}
-```
-
-## Speed Limit Zone
-A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone while it is active.
-The speed limit can be defined either as an absolute value in m/s or as a percentage of the typical operating speed of the vehicle in that location.
-NOTE: When multiple overlapping speed zones exist, the lowest speed limit applies.
-
-### Example 
-```json
-{
-  "geometry": {
-    "coordinates": ...,
-    "type": "Polygon"
-  },
-  "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-    "name": "Speed Limited Area",
-    "policies": {
-      "speedLimit": {
-        "type": "absolute",
-        "value": 5.555
-      }
-    }
-  },
-  "type": "Feature"
-}
-```
-
-## Road Conditions
-Road condition policies indicate that vehicles MUST adjust their driving behavior while inside the zone based on specified conditions. Two types of conditions are supported:
-- Low Traction: Indicates reduced road grip
-- Rough Road: Indicates poor road surface conditions
-
-Each condition is represented as a separate policy. The presence of a condition policy indicates that the condition applies to the zone.
-
-```json
-{
-  "geometry": {
-    "coordinates": ...,
-    "type": "Polygon"
-  },
-  "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-    "name": "Muddy Access Road",
-    "policies": {
-      "lowTraction": {},
-      "roughRoad": {}
-    }
-  },
-  "type": "Feature"
-}
-```
----
 
 ## Activate Policy zone
 * `POST`            `/v1/equipment/e6d895b0-e377-4567-8b1a-8d2a4f3104ff/zones`

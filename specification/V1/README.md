@@ -21,6 +21,9 @@ The following policies are defined in this specification.
 
 # Policy Zone Messages
 
+> [!IMPORTANT]
+All messages described below must be embedded within the [top-level message header](MessageHeader.md) data structure. 
+
 The following messages are defined in this specification for managing policy zones:
 - [ActivateZoneRequestV1](ActivateZoneRequestV1.md)
 - [ActivateZoneResponseV1](ActivateZoneResponseV1.md)
@@ -29,5 +32,3 @@ The following messages are defined in this specification for managing policy zon
 - [OutOfSyncV1](OutOfSyncV1.md)
 - [SyncActiveZonesRequestV1](SyncActiveZonesRequestV1.md)
 - [SyncActiveZonesResponseV1](SyncActiveZonesResponseV1.md)
-
-All messages sent between the FMS and AHS must conform to the Open-Autonomy protocol, which includes a [top-level message header](MessageHeaders.md). 
