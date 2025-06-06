@@ -19,7 +19,7 @@ The following state machine describes the lifecycle of a policy zone as it trans
 > [!IMPORTANT] 
 > Policy zones contain a number of fields that are immutable. These include:
 > - the geometry of the zone.
-> - the set of policies (and their respective attribtues) associated with zone.
+> - the set of policies (and their respective attributes) associated with zone.
 > 
 > Edits made by end-users to these attributes must be managed through the following process:
 > - Create a new policy zone reflecting the desired new state of the policy zone,
