@@ -18,8 +18,6 @@ The `DeactivateZoneResponseV1` message consist the following properties
 
 **NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `DeactivateZoneResponseV1` message 
 
-DeactivateZoneResponseV1
-
 ## Examples
 ### Typical Message
 ```JSON

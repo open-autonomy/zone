@@ -4,7 +4,7 @@ This message is sent by the FMS to AHS to indicate a policy have been removed, a
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | Deletion of policy zone | AHS equipment to accept the deactive zone request, and response with `DeactivateZoneResponseV1` message |
+| `FMS`  | Deletion of policy zone | AHS equipment to accept the deactive zone request, and response with `DeactivateZoneResponseV1` message |
 
 ## Message Attributes
 

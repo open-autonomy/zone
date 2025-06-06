@@ -4,7 +4,7 @@ This message is sent by the FMS to the AHS to indicate a policy zone have been c
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | Policy Zone creation or updates | The equipment to start accepting and adher to the policy zones, and fire off `ActivateZoneResponseV1` messages |
+| `FMS`  | Policy Zone creation or updates | The equipment to start accepting and adher to the policy zones, and fire off `ActivateZoneResponseV1` messages |
 
 ## Message Attributes
 

@@ -4,7 +4,7 @@ This message is sent by the FMS to the AHS to provide equipment with the zones t
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | equipment out of sync | The equipment to adher to the existing activated policy zones, and fire off `ActivateAllZonesResponseV1` messages |
+| `FMS`  | `OutOfSyncV1` | The equipment to adher to the existing activated policy zones, and fire off `ActivateAllZonesResponseV1` messages |
 
 ## Message Attributes
 
