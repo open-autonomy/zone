@@ -1,6 +1,6 @@
 # ActivateZoneResponseV1
 
-This message is sent by the AHS in response to the `ActivateZoneRequestV1` messages
+This message is sent by the AHS in response to the `ActivateZoneRequestV1` messages indicating whether the equipment has accepted, activated or rejected the policy zone request.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -18,7 +18,7 @@ The `ActivateZoneResponseV1` message consist the following properties
 | `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |
 
 > [!IMPORTANT]
-> The equipment may respond with an `Activated` status if it is in a position to immediately adhere to the policy zone policies, or it may respond with an `Accepted` status if it needs to (or is permitted to via the `activationDeadline`) schedule the activation for a later time. The equipment should not send a response with `Rejected` status unless it cannot adhere to the policy zone at all.
+> Equipment may choose to send an `Activate` response without sending an `Accepted` response first. In this case, the equipment is indicating that it has activated the policy zone and is adhering to the associated policies. Equipment shall send an `Accepted` response if it needs to schedule the activation of the policy zone for a later time. Equipment shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
 
 > [!NOTE]
 > The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `ActivateZoneResponseV1` message 
