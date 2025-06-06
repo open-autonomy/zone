@@ -19,7 +19,7 @@ An exclusion policy indicates that vehicles MUST not enter the zone.
     "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Exclusion Area",
     "policies": {
-      "Exclusion": { }
+      "exclusion": { }
     }
   },
   "type": "Feature"
