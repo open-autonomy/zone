@@ -1,6 +1,23 @@
 # Policy Zones
 Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
 
+
+
+## Policy Zones Specification
+This repository defines the messages and protocols used for managing policy zones in autonomous haulage vehicles (AHS), where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHS should behave within these zones.
+
+The following policies are defined in this specification:
+- [Exclusion](policies.md#exclusion)
+- [Controlled Access](policies.md#controlled-access)
+- [Speed Limit](policies.md#speed-limit)
+- [Low Traction](policies.md#low-traction)
+- [Rough Road](policies.md#rough-road)
+
+> [!WARNING]
+> This list is not exhaustive and more policies can be added in the future.
+
+For more information on the messages used in the V1 protocol for managing policy zones, see the [V1 Specification](specification/V1/README.md).
+
 ## Policy Zone State Machine
 
 Policy zones have a lifecycle that is managed by the FMS. This lifecycle includes the following states:
