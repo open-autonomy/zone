@@ -16,7 +16,6 @@ The `SyncAllActiveZonesRequestV1` is
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True | The request ID of the message |
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
 **NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `SyncAllActiveZonesRequestV1` message is for.
@@ -36,13 +35,10 @@ The `SyncAllActiveZonesRequestV1` is
 
 
 ### Properties Object
-The the attributes within the `Properties` object depends on the `policyType`
-
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | The time when the equipment should start acting on the policy zone by **NOTE** it is a soft indication to suggest the equipment to start adhering to the policy, and not a hard command. |
 | `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. |
 
 **TODO** add different zone types here still ....
@@ -57,7 +53,6 @@ The the attributes within the `Properties` object depends on the `policyType`
   "Timestamp": "2024-08-23T08:19:56.631Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesRequestV1": {
-    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "Zones": [
         {
         "type": "Feature",

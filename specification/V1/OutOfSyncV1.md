@@ -1,6 +1,9 @@
 # OutOfSyncV1
 
-This message is sent by the AHS to FMS to notify that the equipment cannot guarantee that it has an up-to-date list of active policy zones, and requires FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. Vehicles that are out of sync with the active zones cannot operate until they have received and internally activated these zones.
+This message is sent by the AHS to FMS to notify that the equipment cannot guarantee that it has an up-to-date list of active policy zones (e.g., the equipment has just been turned on), and requires FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. 
+
+> [!IMPORTANT]
+> Equipment that are out of sync with the active zones must not operate until they have received and internally activated these zones.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
