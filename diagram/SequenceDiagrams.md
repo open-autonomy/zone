@@ -244,3 +244,110 @@ sequenceDiagram
 ```
 
 ## Out Of Sync
+
+Out of sync typically happens when equipment went offline, either it is out of communication, or equipment was down. When the equipment reconnects, there should be an OutOfSyncV1 message sent from AHS to FMS for the equipment.
+
+### Typical Equipment Reconnects
+```mermaid
+sequenceDiagram
+    participant FMS
+    participant AHS
+    participant Equipment 1
+    participant Equipment N
+
+    Note over FMS,Equipment N: On Connect Sequence
+    Note over Equipment N: Equipment N went offline
+    AHS->>FMS: Update Fleet Definition
+
+    Note Over Equipment N: Equipment N reconnects
+
+    Equipment N->>AHS: Connects
+    AHS->>FMS: Update Fleet Definition
+    
+    AHS->>FMS: Equipment N OutOfSyncV1
+
+    FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
+    AHS->>Equipment N: Active Policy Zones
+
+    Equipment N->>AHS: Activated
+
+    AHS->>FMS: Equipment N <br/> SyncActiveZonesResponseV1: Activated
+
+    Note Over Equipment N: Equipment N can now operate
+```
+
+### Equipment Reconnects With New Pending Zone
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment 1
+    participant Equipment N
+
+    Note over FMS,Equipment N: On Connect Sequence
+    Note over Equipment N: Equipment N went offline
+    AHS->>FMS: Update Fleet Definition
+
+    User->>FMS: Create Policy Zone
+    FMS-->>FMS: Policy Zone Pending
+    FMS-->+User: Pending
+
+    FMS->>AHS: Send ActivateZoneRequestV1 to Equipment 1
+    AHS->>Equipment 1: Activate Policy Zone
+    Note over Equipment 1: Unable to immediately adhere to policy
+    Equipment 1->>AHS: Accepted
+    AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+
+    Note Over Equipment N: Equipment N reconnects
+
+    Equipment N->>AHS: Connects
+    AHS->>FMS: Update Fleet Definition
+
+    par Sync Active Zones
+        alt Activated Active Zones
+            AHS->>FMS: Equipment N OutOfSyncV1
+
+            FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
+            AHS->>Equipment N: Active Policy Zones
+
+            Equipment N->>AHS: Activated
+
+            AHS->>FMS: Equipment N <br/> SyncActiveZonesResponseV1: Activated
+        else Rejected Active Zones
+            AHS->>FMS: Equipment N OutOfSyncV1
+
+            FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
+            AHS->>Equipment N: Active Policy Zones
+
+            Equipment N->>AHS: Rejected
+
+            Note Over Equipment N: Equipment N MUST not operate
+
+            AHS->>FMS: ActivateZoneResponseV1: Status "Rejected"
+
+            FMS-->>User: Error Message
+        end
+    and Activate Pending Zone
+        loop
+            FMS->>AHS: Send ActivateZoneRequestV1 to Equipment N
+            AHS->>Equipment N: Activate Policy Zone
+            Equipment N->>Equipment N: Adheres to Policy
+            Equipment N->>AHS: Activated
+            AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
+        end
+    end
+
+    Note Over Equipment 1: Adhering to policy
+    Equipment 1->>Equipment 1: Adheres to Policy
+    Equipment 1->>AHS: Activated
+     AHS->>FMS: Equipment 1 <br/> ActivateZoneResponseV1: Status "Activated"
+
+
+    User-->-FMS: Pending
+
+    Note Over FMS: All equipments activated Policy Zone
+    FMS-->>FMS: Policy Zone Activated
+
+    FMS-->>User: Policy Zone Activated
+```
