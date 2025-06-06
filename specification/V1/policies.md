@@ -15,8 +15,8 @@ An exclusion policy indicates that vehicles MUST not enter the zone.
     "coordinates": ...,
     "type": "Polygon"
   },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
   "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Exclusion Area",
     "policies": {
       "exclusion": { }
@@ -39,8 +39,8 @@ A controlled access policy indicates that vehicles MAY enter the zone, but only 
     "coordinates": ...,
     "type": "Polygon"
   },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
   "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Controlled Access Area",
     "policies": {
       "controlledAccess": {}
@@ -67,8 +67,8 @@ The speed limit can be defined either as an absolute value in m/s or as a percen
     "coordinates": ...,
     "type": "Polygon"
   },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
   "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Speed Limited Area",
     "policies": {
       "speedLimit": {
@@ -90,8 +90,8 @@ A low traction policy indicates that the vehicle must exercise caution due to re
     "coordinates": ...,
     "type": "Polygon"
   },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
   "properties": {
-    "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
     "name": "Muddy Access Road",
     "policies": {
       "lowTraction": {}
@@ -108,15 +108,15 @@ A rough road policy indicates that the vehicle must exercise caution due to poor
 ```json
 {
   "geometry": {
-	"coordinates": ...,
-	"type": "Polygon"
+    "coordinates": ...,
+    "type": "Polygon"
   },
-  "properties": {
 	"id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-	"name": "Rough Road Area",
-	"policies": {
-	  "roughRoad": {}
-	}
+  "properties": {
+    "name": "Rough Road Area",
+    "policies": {
+      "roughRoad": {}
+    }
   },
   "type": "Feature"
 }

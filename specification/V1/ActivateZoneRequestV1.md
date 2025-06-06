@@ -86,8 +86,8 @@ The the attributes within the `Properties` object depends on the `policyType`
                 ]
                 ]
             },
+            "id": "00000000-0000-0000-0000-000000000001",
             "properties": {
-                "id": "00000000-0000-0000-0000-000000000001",
                 "name": "grading 1",
                 "policies": {
                     "Exclusion": { }

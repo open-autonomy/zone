@@ -83,8 +83,8 @@ The `SyncAllActiveZonesRequestV1` is
             ]
             ]
         },
+        "id": "00000000-0000-0000-0000-000000000001",
         "properties": {
-            "id": "00000000-0000-0000-0000-000000000001",
             "policyType": "Exclusion",
             "name": "grading 1",
             "policies": {
@@ -121,8 +121,8 @@ The `SyncAllActiveZonesRequestV1` is
             ]
             ]
         },
+        "id": "00000000-0000-0000-0000-000000000002",
         "properties": {
-            "id": "00000000-0000-0000-0000-000000000002",
             "name": "grading 2",
             "policies": {
                 "Exclusion": { }
@@ -162,8 +162,8 @@ The `SyncAllActiveZonesRequestV1` is
             ]
             ]
         },
+        "id": "00000000-0000-0000-0000-000000000003",
         "properties": {
-            "id": "00000000-0000-0000-0000-000000000003",
             "name": "grading on-road",
             "policies": {
                 "Exclusion": { }
