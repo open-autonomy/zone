@@ -1,6 +1,6 @@
 # ActivateZoneRequestV1
 
-This message is sent by the FMS to the AHS to indicate a policy zone have been created or updated
+This message is sent by the FMS to the AHS to indicate a policy zone has has been created on the FMS which the equipment is expected to adhere to. The equipment should then respond with an `ActivateZoneResponseV1` message indicating whether it has been accepted, activated or rejected the policy zone request (see `ActivateZoneResponseV1` for a description of response types).
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -53,7 +53,6 @@ The the attributes within the `Properties` object depends on the `policyType`
     "Timestamp": "2021-09-01T12:00:00Z",
     "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
     "ActivateZoneRequestV1": {
-        "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
         "Zone": {
             "type": "Feature",
             "geometry": {

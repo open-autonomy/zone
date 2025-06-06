@@ -1,6 +1,6 @@
 # DeactivateZoneResponseV1
 
-This message is sent by the AHS in response to the `DeactivateZoneRequestV1` message, when a policy zone is removed.
+This message is sent by the AHS in response to the `DeactivateZoneRequestV1` message indicating whether the equipment was successful in removing the zone from its internal set of active policy zones zones.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -12,7 +12,6 @@ The `DeactivateZoneResponseV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Accepted`] | String | True |  |
 
@@ -27,7 +26,6 @@ The `DeactivateZoneResponseV1` message consist the following properties
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "DeactivateZoneResponseV1": {
-    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "ZoneId": "123e4567-e89b-12d3-a456-426614174000",
     "Status": "Accepted"
   }

@@ -13,7 +13,6 @@ The `ActivateZoneReposneV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the corresponding request message |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the equipment have accepted, activated or rejected the policy zone request.<br/>- `Accepted`: Unable to adher to policy zone as of now, but will comply when able  to.<br/>- `Activated`: Adher to policy zone.<br/>- `Rejected`: Cannot adher to policy zone |
 | `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |
@@ -30,7 +29,6 @@ The `ActivateZoneReposneV1` message consist the following properties
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "ActivateZoneResponseV1": {
-    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "ZoneId": "123e4567-e89b-12d3-a456-426614174000",
     "Status": "Activated"
   }
@@ -45,7 +43,6 @@ The `ActivateZoneReposneV1` message consist the following properties
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "ActivateZoneResponseV1": {
-    "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "ZoneId": "123e4567-e89b-12d3-a456-426614174000",
     "Status": "Rejected",
     "Reason": "UnexpectedOffline"

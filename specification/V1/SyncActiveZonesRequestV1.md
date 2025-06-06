@@ -1,21 +1,25 @@
-# ActivateAllZonesRequestV1
+# SyncActiveZonesRequestV1
 
-This message is sent by the FMS to the AHS to provide equipment with the zones that existed and should be adher to. Typically sent on connection.
+This message is sent by the FMS to the AHS to provide an out of sync equipment with the current complete set of **active** zones. The equipment must activate all zones within the request before it is permitted to operate.
+
+> [!IMPORTANT]
+> The `SyncActiveZonesRequestV1` message shall not contain any zones that are pending. Zones that are pending at the time of the equipment indicates that it is out of sync must be using the `ActivateZoneRequestV1` message.
+---
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `FMS`  | `OutOfSyncV1` | The equipment to adher to the existing activated policy zones, and fire off `ActivateAllZonesResponseV1` messages |
+| `FMS`  | `OutOfSyncV1` | The equipment to adher to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
 
 ## Message Attributes
 
-The `ActivateAllZoneReposneV1` is 
+The `SyncAllActiveZonesRequestV1` is 
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"RequestId"` | RequestId | UUID | True | The request ID of the message |
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
-**NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateAllZonesRequestV1` message is for. 
+**NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `SyncAllActiveZonesRequestV1` message is for.
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -52,7 +56,7 @@ The the attributes within the `Properties` object depends on the `policyType`
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
-  "ActivateAllZonesRequestV1": {
+  "SyncActiveZonesRequestV1": {
     "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1",
     "Zones": [
         {

@@ -1,18 +1,14 @@
 # OutOfSyncV1
 
-This message is sent by the AHS to FMS to notify that the equipment does not have the up-to-date policy zones information, and requires FMS to send the policy zones.
+This message is sent by the AHS to FMS to notify that the equipment cannot guarantee that it has an up-to-date list of active policy zones, and requires FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. Vehicles that are out of sync with the active zones cannot operate until they have received and internally activated these zones.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | AHS equipment re-connecting with mis-matched policy zones | FMS to send `ActivateAllZoneRequestV1` |
+| `AHS`  | AHS equipment re-connecting with mis-matched policy zones | FMS to send `SyncActiveZonesRequestV1` |
 
 ## Message Attributes
 
-The `OutOfSyncV1` message consist the following properties
-
-| Key | Value | Format | Required | Description |
-| --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True |The request ID of the message |
+The `OutOfSyncV1` message does not contain any additional attributes beyond the standard message headers.
 
 **NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `OutOfSyncV1` message 
 
@@ -25,7 +21,6 @@ The `OutOfSyncV1` message consist the following properties
     "Timestamp": "2024-08-23T08:19:55.621Z",
     "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
     "OutOfSyncV1": {
-        "RequestId": "331f14b1-ef84-4e11-9271-4aabe44414e1"
     }
 }
 ```
