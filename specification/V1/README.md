@@ -26,7 +26,7 @@ The following messages are defined in this specification for managing policy zon
 - [ActivateZoneResponseV1](ActivateZoneResponseV1.md)
 - [DeactivateZoneRequestV1](DeactivateZoneRequestV1.md)
 - [DeactivateZoneResponseV1](DeactivateZoneResponseV1.md)
-- [OutOfSync](OutOfSync.md)
+- [OutOfSyncV1](OutOfSyncV1.md)
 - [SyncActiveZonesRequestV1](SyncActiveZonesRequestV1.md)
 - [SyncActiveZonesResponseV1](SyncActiveZonesResponseV1.md)
 
