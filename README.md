@@ -1,6 +1,12 @@
 # Policy Zones
 Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
 
+### Language
+| Acronyms | Extended Name |
+| --- | --- |
+| AHS | Autonomouse Haulage System |
+| FMS | Fleet Management System |
+| AHT | Autonomous Haulage Truck |
 
 
 ## Policy Zones Specification
