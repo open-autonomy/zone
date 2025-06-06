@@ -11,10 +11,10 @@ Find below the Specification for the Version 2 protocol for the spot service of 
 # Policies
 
 The following policies are defined in this specification.
-- [Exclusion](policies.md#exclusion-policy)	
-- [Speed Limit](policies.md#speed-limit-policy)
-- [Low Traction](policies.md#low-traction-policy)
-- [Rough Road](policies.md#rough-road-policy)
+- [Exclusion](policies.md#exclusion)	
+- [Speed Limit](policies.md#speed-limit)
+- [Low Traction](policies.md#low-traction)
+- [Rough Road](policies.md#rough-road)
 
 > [!WARNING]
 > This list is not exhaustive and more policies can be added in the future.
