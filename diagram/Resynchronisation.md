@@ -64,29 +64,14 @@ sequenceDiagram
     AHS->>FMS: Update Fleet Definition
 
     par Sync Active Zones
-        alt Activated Active Zones
-            AHS->>FMS: Equipment N OutOfSyncV1
+        AHS->>FMS: Equipment N OutOfSyncV1
 
-            FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
-            AHS->>Equipment N: Active Policy Zones
+        FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
+        AHS->>Equipment N: Active Policy Zones
 
-            Equipment N->>AHS: Activated
+        Equipment N->>AHS: Activated
 
-            AHS->>FMS: Equipment N <br/> SyncActiveZonesResponseV1: Activated
-        else Rejected Active Zones
-            AHS->>FMS: Equipment N OutOfSyncV1
-
-            FMS->>AHS: Equipment N <br/> SyncActiveZonesRequestV1
-            AHS->>Equipment N: Active Policy Zones
-
-            Equipment N->>AHS: Rejected
-
-            Note Over Equipment N: Equipment N MUST not operate
-
-            AHS->>FMS: ActivateZoneResponseV1: Status "Rejected"
-
-            FMS-->>User: Error Message
-        end
+        AHS->>FMS: Equipment N <br/> SyncActiveZonesResponseV1: Activated
     and Activate Pending Zone
         loop
             FMS->>AHS: Send ActivateZoneRequestV1 to Equipment N
@@ -109,4 +94,36 @@ sequenceDiagram
     FMS-->>FMS: Policy Zone Activated
 
     FMS-->>User: Policy Zone Activated
+```
+
+### Equipment Reconnnects - Reject Active Zones
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment 1
+
+    Note over FMS,Equipment 1: On Connect Sequence
+    Note over Equipment 1: Equipment 1 went offline
+    AHS->>FMS: Update Fleet Definition
+
+    Note Over Equipment 1: Equipment 1 reconnects
+
+    Equipment 1->>AHS: Connects
+    AHS->>FMS: Update Fleet Definition
+
+    AHS->>FMS: Equipment 1 OutOfSyncV1
+
+    FMS->>AHS: Equipment 1 <br/> SyncActiveZonesRequestV1
+    AHS->>Equipment 1: Active Policy Zones
+
+    Equipment 1->>AHS: Rejected
+
+    Note Over Equipment 1: Equipment 1 MUST not operate
+
+    AHS->>FMS: ActivateZoneResponseV1: Status "Rejected"
+
+    FMS-->>User: Error Message
+
 ```
