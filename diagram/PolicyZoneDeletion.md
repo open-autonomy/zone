@@ -1,5 +1,6 @@
 
-## Policy Zone Delete
+# Policy Zone Deletion
+When a policy zone is deleted, the FMS will send a request to the AHS to deactivate the policy zone on all equipments that are currently adhering to it. The AHS will then communicate with each equipment to deactivate the policy zone.
 
 Assuming the policy zone already exist and the equipments are aware of the policy zone
 
