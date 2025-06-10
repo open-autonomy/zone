@@ -36,6 +36,8 @@ sequenceDiagram
 ```
 
 ### Equipment Reconnects With New Pending Zone
+When an equipment reconnects while a new policy zone is pending, the equipment must internally activates all active policy zones sent via `SyncActiveZonesRequestV1` in order to operate. The equipment will also receive an `ActivateZoneRequestV1` message for each of the pending policy zones to be activated internally as well.
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -97,7 +99,9 @@ sequenceDiagram
     FMS-->>User: Policy Zone Activated
 ```
 
-### Equipment Reconnnects - Reject Active Zones
+### Equipment Reconnects - Reject Active Zones
+When an equipment reconnects and the active policy zones are internally rejected, it must not operate. The AHS will send a `ActivateZoneResponseV1` with a status of "Rejected", and the FMS shall then notify the user of the error.
+
 ```mermaid
 sequenceDiagram
     participant User
