@@ -5,10 +5,20 @@ This document describes the policies that can be applied to policy zones created
 > [!IMPORTANT]
 > A policy zone may contain may contain multiple policies. Equipment that has activated a policy zone must adhere to all policies defined within that zone.
 
+### Policies
+- [Exclusion](#exclusion)
+- [Controlled Access](#controlled-access)
+- [Speed Limit](#speed-limit)
+- [Low Traction](#low-traction)
+- [Rough Road](#rough-road)
+
 ## Exclusion
 An exclusion policy indicates that vehicles MUST not enter the zone.
 
-### Example 
+### Exclusion Policy Attributes
+Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is in effect.
+
+### Example
 ```json
 {
   "geometry": {
@@ -32,7 +42,10 @@ An exclusion policy indicates that vehicles MUST not enter the zone.
 
 A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
 
-### Example 
+### Controlled Access Policy Attributes
+Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
+
+### Example
 ```json
 {
   "geometry": {
@@ -50,8 +63,6 @@ A controlled access policy indicates that vehicles MAY enter the zone, but only 
 }
 ```
 
-
-
 ## Speed Limit
 A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone.
 
@@ -59,6 +70,14 @@ The speed limit can be defined either as an absolute value in m/s or as a percen
 
 > [!IMPORTANT]
 > When multiple overlapping speed zones exist, the lowest speed limit applies.
+
+### Speed Limit Policy Attributes
+The following attributes are used to define the `"speedLimit"` policy:
+
+| Key | Value | Format | Required | Description |
+| --- |:---:|:---:|:---:| --- |
+| `"type"` | [`"absolute"`, `"percent"`] | string | True | The `"value"` type of teh speed limit. <br/> - `"absolute"` the exact speed limit in m/s. <br/> - `"percent"` the speed limit as a percentage of the typical operating speed. |
+| `"value"` | number | float | True | The speed limit value. <br/> - If `"type"` is `"absolute"`, this is the exact speed limit in m/s. <br/> - If `"type"` is `"percent"`, this is the percentage of the typical operating speed. |
 
 ### Example 
 ```json
@@ -84,6 +103,9 @@ The speed limit can be defined either as an absolute value in m/s or as a percen
 ## Low Traction
 A low traction policy indicates that the vehicle must exercise caution due to reduced road grip conditions. This policy is typically applied in areas with muddy, icy, or otherwise slippery surfaces.
 
+### Low Traction Policy Attributes
+Empty `"lowTraction"` object `{}` is used to indicate that the low traction policy is in effect.
+
 ```json
 {
   "geometry": {
@@ -104,6 +126,9 @@ A low traction policy indicates that the vehicle must exercise caution due to re
 
 ## Rough Road
 A rough road policy indicates that the vehicle must exercise caution due to poor road conditions, such as potholes, uneven surfaces, or loose gravel. This policy is typically applied in areas where the road surface is not well maintained.
+
+### Rough Road Policy Attributes
+Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy is in effect.
 
 ```json
 {

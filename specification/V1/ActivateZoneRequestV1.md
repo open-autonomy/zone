@@ -31,16 +31,12 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 
 
 ### Properties Object
-The the attributes within the `Properties` object depends on the `policyType`
-
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when equipment the latest time by which equipment that has accepted a policy zone should transition to activating it **NOTE** This is a soft deadline, equipment should aim to adhere to the policy by this time but is not strictly required to do so if it is not possible or safe to do so. |
-| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. |
-
-**TODO** add different zone types here still ....
+| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when equipment the latest time by which equipment that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, equipment should aim to adhere to the policy by this time but is not strictly required to do so if it is not possible or safe to do so. |
+| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 
 ## Examples
@@ -90,7 +86,7 @@ The the attributes within the `Properties` object depends on the `policyType`
             "properties": {
                 "name": "grading 1",
                 "policies": {
-                    "Exclusion": { }
+                    "exclusion": { }
                 },
                 "activationDeadline": "2024-04-04T06:05:47Z"
             }

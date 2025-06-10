@@ -39,9 +39,7 @@ The `SyncAllActiveZonesRequestV1` is
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. |
-
-**TODO** add different zone types here still ....
+| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 
 ## Examples
@@ -85,10 +83,9 @@ The `SyncAllActiveZonesRequestV1` is
         },
         "id": "00000000-0000-0000-0000-000000000001",
         "properties": {
-            "policyType": "Exclusion",
             "name": "grading 1",
             "policies": {
-                "Exclusion": { }
+                "exclusion": { }
             },
         }
         },
@@ -125,7 +122,7 @@ The `SyncAllActiveZonesRequestV1` is
         "properties": {
             "name": "grading 2",
             "policies": {
-                "Exclusion": { }
+                "exclusion": { }
             },
         }
         },
@@ -166,7 +163,7 @@ The `SyncAllActiveZonesRequestV1` is
         "properties": {
             "name": "grading on-road",
             "policies": {
-                "Exclusion": { }
+                "exclusion": { }
             },
         }
         }
