@@ -15,6 +15,7 @@ The following policies are defined in this specification.
 - [Speed Limit](policies.md#speed-limit)
 - [Low Traction](policies.md#low-traction)
 - [Rough Road](policies.md#rough-road)
+- [Controlled Access](policies.md#controlled-access) [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
 > [!WARNING]
 > This list is not exhaustive and more policies can be added in the future.

@@ -7,10 +7,11 @@ This document describes the policies that can be applied to policy zones created
 
 ### Policies
 - [Exclusion](#exclusion)
-- [Controlled Access](#controlled-access)
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
+- [Controlled Access](#controlled-access) [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
 
 ## Exclusion
 An exclusion policy indicates that vehicles MUST not enter the zone.
@@ -30,33 +31,6 @@ Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is
     "name": "Exclusion Area",
     "policies": {
       "exclusion": { }
-    }
-  },
-  "type": "Feature"
-}
-```
-
-## Controlled Access
-
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
-
-A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
-
-### Controlled Access Policy Attributes
-Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
-
-### Example
-```json
-{
-  "geometry": {
-    "coordinates": ...,
-    "type": "Polygon"
-  },
-  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-  "properties": {
-    "name": "Controlled Access Area",
-    "policies": {
-      "controlledAccess": {}
     }
   },
   "type": "Feature"
@@ -141,6 +115,33 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
     "name": "Rough Road Area",
     "policies": {
       "roughRoad": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Controlled Access
+
+[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+
+A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
+
+### Controlled Access Policy Attributes
+Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
+
+### Example
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+  "properties": {
+    "name": "Controlled Access Area",
+    "policies": {
+      "controlledAccess": {}
     }
   },
   "type": "Feature"
