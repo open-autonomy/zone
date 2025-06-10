@@ -61,6 +61,7 @@ sequenceDiagram
     Note Over Equipment N: Equipment N reconnects
 
     Equipment N->>AHS: Connects
+    Note Over Equipment N: Requires Policy Zones to operate
     AHS->>FMS: Update Fleet Definition
 
     par Sync Active Zones
@@ -111,6 +112,7 @@ sequenceDiagram
     Note Over Equipment 1: Equipment 1 reconnects
 
     Equipment 1->>AHS: Connects
+    Note Over Equipment 1: Requires Policy Zones to operate
     AHS->>FMS: Update Fleet Definition
 
     AHS->>FMS: Equipment 1 OutOfSyncV1
