@@ -15,7 +15,8 @@ The `DeactivateZoneResponseV1` message consist the following properties
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Accepted`] | String | True |  |
 
-**NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `DeactivateZoneResponseV1` message 
+>[!NOTE]
+> The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `DeactivateZoneResponseV1` message 
 
 ## Examples
 ### Typical Message

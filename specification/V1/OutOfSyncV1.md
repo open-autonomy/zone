@@ -13,7 +13,8 @@ This message is sent by the AHS to FMS to notify that the equipment cannot guara
 
 The `OutOfSyncV1` message does not contain any additional attributes beyond the standard message headers.
 
-**NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `OutOfSyncV1` message 
+>[!NOTE]
+> The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `OutOfSyncV1` message 
 
 ## Examples
 ### Typical Message

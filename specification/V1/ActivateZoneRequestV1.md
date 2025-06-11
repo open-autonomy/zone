@@ -14,7 +14,8 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
 
-**NOTE**: the top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateZoneRequestV1` message is for. 
+>[!NOTE]
+> The top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateZoneRequestV1` message is for. 
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -27,7 +28,7 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"type"` | `Polygon` | String | True | The geometry type that conforms with GeoJSON geometry `Polygon` |
-| `"coordinates"` |  | Array[Array[Array[Number, Number, Number]]] | True | A GeoJSON compatible polygon geometry coordinates. **NOTE** each coordinate must consist of 3 number, [longitude, latitude, elevation]. See [GeoJSON Geometry Object](https://datatracker.ietf.org/doc/html/rfc7946#section-3.1) |
+| `"coordinates"` |  | Array[Array[Array[Number, Number, Number]]] | True | A GeoJSON compatible polygon geometry coordinates. <br/> **NOTE** each coordinate must consist of 3 number, [longitude, latitude, elevation]. See [GeoJSON Geometry Object](https://datatracker.ietf.org/doc/html/rfc7946#section-3.1) |
 
 
 ### Properties Object

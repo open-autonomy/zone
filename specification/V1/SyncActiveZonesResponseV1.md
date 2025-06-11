@@ -16,7 +16,8 @@ The `SyncActiveZonesResponseV1` message consist the following properties
 | `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the equipment has successfully activated received the policy zones. <br/> - `Activated`: The equipment has activated the zones and is adhering to their associated policies. <br/> - `Rejected`: The equiment cannot adhere to the policy. In this case, the equipment must not operate as it cannot guarantee safety. |
 | `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the equipment |
 
-**NOTE**: the top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `SyncActiveZonesResponseV1` message
+>[!NOTE]
+> The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `SyncActiveZonesResponseV1` message
 
 ### ZoneIdObject
 | Key | Value | Format | Required | Description |
