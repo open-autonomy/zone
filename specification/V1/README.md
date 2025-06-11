@@ -1,7 +1,7 @@
 This document describes Version 1 of the Policy Zone Specification.
 
 # Policy Zone Specification V1
-This specification defines the messages and protocols used for managing policy zones in autonomous haulage vehicles (AHS). It includes the activation, deactivation, synchronization, and handling of policy zones to ensure safe operation of the equipment.
+This specification defines the messages and protocols used for managing policy zones in Autonomous Haulage System (AHS). It includes the activation, deactivation, synchronization, and handling of policy zones to ensure safe operation of the AHT.
 
 # Message definition
 Find below the Specification for the Version 2 protocol for the spot service of Open-Autonomy

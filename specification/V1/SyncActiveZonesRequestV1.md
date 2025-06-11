@@ -1,14 +1,14 @@
 # SyncActiveZonesRequestV1
 
-This message is sent by the FMS to the AHS to provide an out of sync equipment with the current complete set of **active** zones. The equipment must activate all zones within the request before it is permitted to operate.
+This message is sent by the Fleet Management System (FMS) to the Autonomous Haulage System (AHS) to provide an out of sync Autonomous Haulage Truck (AHT) with the current complete set of **active** zones. The AHT must activate all zones within the request before it is permitted to operate.
 
 > [!IMPORTANT]
-> The `SyncActiveZonesRequestV1` message shall not contain any zones that are pending. Zones that are pending at the time of the equipment indicates that it is out of sync must be using the `ActivateZoneRequestV1` message.
+> The `SyncActiveZonesRequestV1` message shall not contain any zones that are pending. Zones that are pending at the time of the AHT indicates that it is out of sync must be using the `ActivateZoneRequestV1` message.
 ---
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `FMS`  | `OutOfSyncV1` | The equipment to adher to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
+| `FMS`  | `OutOfSyncV1` | The AHT to adher to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
 
 ## Message Attributes
 
@@ -19,7 +19,7 @@ The `SyncAllActiveZonesRequestV1` is
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId`, indicating which equipment the `SyncAllActiveZonesRequestV1` message is for.
+> The top-level message headers should contain the `AHTId`, indicating which AHT the `SyncAllActiveZonesRequestV1` message is for.
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -40,7 +40,7 @@ The `SyncAllActiveZonesRequestV1` is
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
+| `"policies"` | Policies | Object | True | A set of policies that the AHT should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 
 ## Examples
@@ -50,7 +50,7 @@ The `SyncAllActiveZonesRequestV1` is
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
-  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
+  "AHTId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesRequestV1": {
     "Zones": [
         {

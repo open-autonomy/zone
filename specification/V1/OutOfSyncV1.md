@@ -1,20 +1,20 @@
 # OutOfSyncV1
 
-This message is sent by the AHS to FMS to notify that the equipment cannot guarantee that it has an up-to-date list of active policy zones (e.g., the equipment was previously offline), and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. 
+This message is sent by the Autonomous Haulage System (AHS) to Fleet Management System (FMS) to notify that the Autonomous Haulage Truck (AHT) cannot guarantee that it has an up-to-date list of active policy zones (e.g., the AHT was previously offline), and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. 
 
 > [!IMPORTANT]
-> Equipment that are out of sync with the active zones must not operate until they have received and internally activated these zones.
+> AHT that are out of sync with the active zones must not operate until they have received and internally activated these zones.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `AHS`  | AHS equipment re-connecting with mis-matched policy zones | FMS to send `SyncActiveZonesRequestV1` |
+| `AHS`  | AHT re-connecting to AHS with outdated policy zones | FMS to send `SyncActiveZonesRequestV1` |
 
 ## Message Attributes
 
 The `OutOfSyncV1` message does not contain any additional attributes beyond the standard message headers.
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `OutOfSyncV1` message 
+> The top-level message headers should contain the `EquipmentId` which indicate the origin AHT of the `OutOfSyncV1` message 
 
 ## Examples
 ### Typical Message

@@ -1,6 +1,6 @@
 # SyncActiveZonesResponseV1
 
-This message is sent by the AHS in response to the `SyncActiveZonesRequestV1` messages. The set of Zone IDs in the `SyncActiveZonesResponseV1` message should be the same as the set of Zone IDs in the `SyncActiveZonesRequestV1` message.
+This message is sent by the Autonomous Haulage System (AHS) in response to the `SyncActiveZonesRequestV1` messages from Fleet Management System  (FMS). The Autonomous Haulage Truck (AHT) **MUST** internally activate all the zones provided in the `SyncActiveZonesRequestV1` message in order to operate. If any zone is failed to activate, AHT should reject the request using the `SyncActiveZonesResponseV1` message and **MUST** not operate.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -13,11 +13,11 @@ The `SyncActiveZonesResponseV1` message consist the following properties
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the equipment has successfully activated received the policy zones. <br/> - `Activated`: The equipment has activated the zones and is adhering to their associated policies. <br/> - `Rejected`: The equiment cannot adhere to the policy. In this case, the equipment must not operate as it cannot guarantee safety. |
-| `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the equipment |
+| `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AHT has successfully activated received the policy zones. <br/> - `Activated`: The AHT has activated the zones and is adhering to their associated policies. <br/> - `Rejected`: The equiment cannot adhere to the policy. In this case, the AHT must not operate as it cannot guarantee safety. |
+| `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the AHT |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId` which indicate the origin equipment of the `SyncActiveZonesResponseV1` message
+> The top-level message headers should contain the `AHTId` which indicate the origin AHT of the `SyncActiveZonesResponseV1` message
 
 ### ZoneIdObject
 | Key | Value | Format | Required | Description |
@@ -32,7 +32,7 @@ The `SyncActiveZonesResponseV1` message consist the following properties
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2021-09-01T12:00:00Z",
-  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
+  "AHTId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesResponseV1": {
     "Status": "Activated",
     "ActivatedZones": [

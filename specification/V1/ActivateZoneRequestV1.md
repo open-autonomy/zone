@@ -1,10 +1,10 @@
 # ActivateZoneRequestV1
 
-This message is sent by the FMS to the AHS to indicate a policy zone has has been created on the FMS which the equipment is expected to adhere to. The equipment should then respond with an `ActivateZoneResponseV1` message indicating whether it has been accepted, activated or rejected the policy zone request (see `ActivateZoneResponseV1` for a description of response types).
+This message is sent by the Fleet Management System (FMS) to the Autonomous Haulage System (AHS) to indicate a policy zone has has been created on the FMS which the Autonomous Haulage Truck (AHT) is expected to adhere to. The AHT should then respond with an `ActivateZoneResponseV1` message indicating whether it has been accepted, activated or rejected the policy zone request (see `ActivateZoneResponseV1` for a description of response types).
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `FMS`  | Policy Zone creation or updates | The equipment to start accepting and adher to the policy zones, and fire off `ActivateZoneResponseV1` messages |
+| `FMS`  | Policy Zone creation or updates | The AHT to start accepting and adher to the policy zones, and fire off `ActivateZoneResponseV1` messages |
 
 ## Message Attributes
 
@@ -15,7 +15,7 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId`, indicating which equipment the `ActivateZoneRequestV1` message is for. 
+> The top-level message headers should contain the `EquipmentId`, indicating which AHT the `ActivateZoneRequestV1` message is for. 
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -36,8 +36,8 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when equipment the latest time by which equipment that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, equipment should aim to adhere to the policy by this time but is not strictly required to do so if it is not possible or safe to do so. |
-| `"policies"` | Policies | Object | True | A set of policies that the equipment should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
+| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when AHT the latest time by which AHT that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, AHT should aim to adhere to the policy by this time but is not strictly required to do so if it is not possible or safe to do so. |
+| `"policies"` | Policies | Object | True | A set of policies that the AHT should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 
 ## Examples

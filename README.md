@@ -1,16 +1,16 @@
 # Policy Zones
-Policy Zones are geographically bounded regions within a map in which autonomous haulage equipment (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
+Policy Zones are geographically bounded regions within a map in which Autonomous Haulage Truck (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
 
 ### Language
 | Acronyms | Extended Name |
 | --- | --- |
 | AHS | Autonomouse Haulage System |
-| FMS | Fleet Management System |
 | AHT | Autonomous Haulage Truck |
+| FMS | Fleet Management System |
 
 
 ## Policy Zones Specification
-This repository defines the messages and protocols used for managing policy zones in autonomous haulage vehicles (AHS), where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHS should behave within these zones.
+This repository defines the messages and protocols used for managing policy zones in AHT, where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHT should behave within these zones.
 
 The following policies are defined in this specification:
 - [Exclusion](./specification/V1/policies.md#exclusion)
@@ -53,4 +53,4 @@ The following state machine describes the lifecycle of a policy zone as it trans
 
 ## Sequence diagrams
 
-See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scenarios that describe the interactions between the FMS, AHS, and equipment when managing policy zones.
+See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scenarios that describe the interactions between the FMS, AHS, and AHT when managing policy zones.
