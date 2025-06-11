@@ -13,13 +13,13 @@ Policy Zones are geographically bounded regions within a map in which autonomous
 This repository defines the messages and protocols used for managing policy zones in autonomous haulage vehicles (AHS), where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHS should behave within these zones.
 
 The following policies are defined in this specification:
-- [Exclusion](policies.md#exclusion)
-- [Controlled Access](policies.md#controlled-access)
-- [Speed Limit](policies.md#speed-limit)
-- [Low Traction](policies.md#low-traction)
-- [Rough Road](policies.md#rough-road)
+- [Exclusion](./specification/V1/policies.md#exclusion)
+- [Speed Limit](./specification/V1/policies.md#speed-limit)
+- [Low Traction](./specification/V1/policies.md#low-traction)
+- [Rough Road](./specification/V1/policies.md#rough-road)
+- [Controlled Access](./specification/V1/policies.md#controlled-access) [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
-> [!WARNING]
+> [!NOTE]
 > This list is not exhaustive and more policies can be added in the future.
 
 For more information on the messages used in the V1 protocol for managing policy zones, see the [V1 Specification](specification/V1/README.md).
