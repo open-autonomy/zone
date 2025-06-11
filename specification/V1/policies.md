@@ -10,7 +10,7 @@ This document describes the policies that can be applied to policy zones created
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
-- [Controlled Access](#controlled-access) [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+- [Controlled Access](#controlled-access) [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
 
 ## Exclusion
@@ -125,7 +125,7 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
 
 ## Controlled Access
 
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
 A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
 
