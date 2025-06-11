@@ -1,12 +1,10 @@
-## Resynchronisation
+# Resynchronisation
 
 Resynchronisation is required whenever an equipment is switched on, or come back online after having lost communications (it is up to the AHS to determine what consititutes a loss of communication event).
 
 When an equipment comes back online, it should send an `OutOfSyncV1` message to the FMS. This message indicates that the equipment cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the equipment is out of sync, it must not operate until it has received and internally activated these zones.
 
-There are two scenarios outlined below that 
-
-### Typical Equipment Reconnects
+## Typical Equipment Reconnects
 ```mermaid
 sequenceDiagram
     participant FMS
@@ -35,7 +33,7 @@ sequenceDiagram
     Note Over Equipment N: Equipment N can now operate
 ```
 
-### Equipment Reconnects With New Pending Zone
+## Equipment Reconnects With New Pending Zone
 When an equipment reconnects while a new policy zone is pending, the equipment must internally activates all active policy zones sent via `SyncActiveZonesRequestV1` in order to operate. The equipment will also receive an `ActivateZoneRequestV1` message for each of the pending policy zones to be activated internally as well.
 
 ```mermaid
@@ -99,7 +97,7 @@ sequenceDiagram
     FMS-->>User: Policy Zone Activated
 ```
 
-### Equipment Reconnects - Reject Active Zones
+## Equipment Reconnects - Reject Active Zones
 When an equipment reconnects and the active policy zones are internally rejected, it must not operate. The AHS will send a `ActivateZoneResponseV1` with a status of "Rejected", and the FMS shall then notify the user of the error.
 
 ```mermaid
