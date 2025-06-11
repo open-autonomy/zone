@@ -77,4 +77,5 @@ sequenceDiagram
     FMS-->>User: Policy Zone Activated
 ```
 
-The REST implementation ensures that the FMS can handle asynchronous responses from the AHS, allowing for a more robust and scalable system. The AHS responds with a 202 Accepted status to indicate that the request has been received and is being processed, while the final activation status is communicated through the `ActivateZoneResponseV1` message.
+>[!NOTE]
+>The REST implementation ensures that the FMS can handle asynchronous responses from the AHS, allowing for a more robust and scalable system. The AHS responds with a 202 Accepted status to indicate that the request has been received and is being processed, while the final activation status is communicated through the `ActivateZoneResponseV1` message.
