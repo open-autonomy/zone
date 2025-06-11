@@ -50,7 +50,7 @@ The following attributes are used to define the `"speedLimit"` policy:
 
 | Key | Value | Format | Required | Description |
 | --- |:---:|:---:|:---:| --- |
-| `"type"` | [`"absolute"`, `"percent"`] | string | True | The `"value"` type of teh speed limit. <br/> - `"absolute"` the exact speed limit in m/s. <br/> - `"percent"` the speed limit as a percentage of the typical operating speed. |
+| `"type"` | [`"absolute"`, `"percent"`] | string | True | The `"value"` type of the speed limit. |
 | `"value"` | number | float | True | The speed limit value. <br/> - If `"type"` is `"absolute"`, this is the exact speed limit in m/s. <br/> - If `"type"` is `"percent"`, this is the percentage of the typical operating speed. |
 
 ### Example 
