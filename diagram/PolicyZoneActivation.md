@@ -1,5 +1,6 @@
 ## Policy Zone Activation
-When a policy zone is created, it should follow the following sequence to activate the policy zone between AHS and FMS system
+When a policy zone is created, the Fleet Management System (FMS) initiates the activation process by sending `ActivateZoneRequestV1` messages to the Autonomous Haulage System (AHS) for each of the equipment pieces involved. The AHS then communicates with each of the equipments to activate the policy zone internally. The following sequence diagram illustrates this process.
+
 ```mermaid
 sequenceDiagram
     participant User
