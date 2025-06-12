@@ -60,8 +60,8 @@ See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scena
 
 ## Communication Protocols
 
-This specification does not indicate the use of any specific communication protocol between the FMS and AHS. Integrators may therefore choose to support for one or more protocols such as HTTP, WebSockets, or MQTT.
+This specification does not indicate the use of any specific communication protocol between the FMS and AHS. Providing the protocols can meet the requirements, integrators can choose to support for one or more protocols such as HTTP, WebSockets, or MQTT
 
-The selected communications protocols must implement the following requirements:
- - Two-way connection monitoring
-
+All communications protocols selected must be implemented to meet the following requirements:
+ - Connections are monitored from both sides
+ - Communications are managed asynchronously
