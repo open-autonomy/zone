@@ -46,6 +46,9 @@ sequenceDiagram
 ## Policy Zone Activation Deadline Exceed
 The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time.
 
+> [!NOTE]
+> The inclusion of the activation deadline does not change the activation process from the perspective of the FMS. For FMS to consider the zone active in the FMS, the FMS still requires confirmation from all AVs that the zone has been activated.
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -81,7 +84,7 @@ sequenceDiagram
 When an AV cannot adhere to the policy defined in the policy zone definition, the AHS should send a `"Rejected"` status in the `ActiveZoneResponse` message to FMS. The FMS will then notify the user accordingly.
 
 > [!NOTE]
-> If any vehicle rejects the `ActivateZoneRequestV1` message for a given zone, the zone will not be activated within the FMS and will remain as `"pending"` until all AVs have successfully activated the zone.
+> If an AV rejects the `ActivateZoneRequestV1` message for a given zone, the zone will not be activated within the FMS and will remain as `"pending"` until all AVs have successfully activated the zone.
 
 ```mermaid
 sequenceDiagram
@@ -103,47 +106,3 @@ sequenceDiagram
     FMS-->>FMS: Policy Zone Pending
     FMS-->>User: Error Message
 ```
-
-## Implementation with REST from FMS to AHS
-The following sequence diagram illustrates the implementation of the policy zone activation using REST calls from the FMS to the AHS system, which then communicates with the AV.
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant FMS
-    participant AHS
-    participant AV 1
-    participant AV N
-
-    Note over FMS,AV N: On Connect Sequence
-    User->>FMS: Create Policy Zone
-    FMS-->>FMS: Policy Zone Pending
-    FMS-->+User: Pending
-    par AV 1
-        FMS->>AHS: Send ActivateZoneRequestV1 to AV 1 (via REST)
-        AHS-->>FMS: Accepted 202 (REST Response)
-        AHS->>AV 1: Activate Policy Zone
-        AV 1->>AV 1: Adheres to Policy
-        AV 1->>AHS: Activated
-        AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
-    and AV N
-        FMS->>AHS: Send ActivateZoneRequestV1 to AV N (via REST)
-        AHS-->>FMS: Accepted 202 (REST Response)
-        AHS->>AV N: Activate Policy Zone
-        Note Over AV N: Unable to immediately adhere to policy
-        AV N->>AHS: Accept
-        AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
-    end
-    Note Over AV N: Adhering to policy
-    AV N->>AV N: Adheres to Policy
-    AV N->>AHS: Activated
-
-    AHS->>FMS: AV N <br/> ActivateZoneResponseV1: Status "Activated"
-    User-->-FMS: Pending
-    Note Over FMS: All AVs activated Policy Zone
-    FMS-->>FMS: Policy Zone Activated
-    FMS-->>User: Policy Zone Activated
-```
-
->[!NOTE]
->The REST implementation above ensures that the FMS can handle asynchronous responses from the AHS, allowing for a more robust and scalable system. The AHS responds with a 202 Accepted status to indicate that the request has been received and is being processed, and **MUST** not be used as the final activation status. The final activation status is communicated through the `ActivateZoneResponseV1` message.
