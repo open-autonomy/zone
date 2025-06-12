@@ -3,7 +3,8 @@
 This document describes the policies that can be applied to policy zones created by the Fleet Management System (FMS) and adhered to by the Autonomous Haulage System's (AHS) Autonomous Vehicles (AV). Each policy defines specific behaviors that AVs must follow while operating within the defined zones.
 
 > [!IMPORTANT]
-> - A policy zone may contain multiple policies. An AV that has activated a policy zone must adhere to <ins>all</ins> policies specified in the zone.
+> - When an AV activates a policy, it shall adhere prior to entering and while inside the specified geometry.
+> - A policy zone may contain multiple policies. When an AV activates a policy zone, it shall adhere to <ins>all</ins> policies specified in the zone.
 
 
 ### Policies
@@ -15,7 +16,7 @@ This document describes the policies that can be applied to policy zones created
 
 
 ## Exclusion
-An exclusion policy specifies that an AV MUST not enter the zone and MUST not move if it is already inside the zone. This includes preventing motion from all controlled motions - e.g. Raise Tray or Lower Tray.
+An exclusion policy specifies that the AV shall not enter the zone and shall not move if it is already inside the zone. This includes preventing motion from all controlled motions - e.g. Raise Tray or Lower Tray.
 
 ### Exclusion Policy Attributes
 Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is in effect.
@@ -39,12 +40,12 @@ Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is
 ```
 
 ## Speed Limit
-A speed limit policy specifies that AVs MUST reduce its speed to the specified limit before entering and while inside the zone.
+A speed limit policy specifies that the AV shall reduce its speed to the specified limit before entering and while inside the zone.
 
 The speed limit can be defined either as an absolute value in m/s or as a percentage of the operating speed of the vehicle in that location.
 
 > [!IMPORTANT]
-> When multiple overlapping speed zones exist, the lowest speed limit applies.
+> When speed limits are specified in the map or multiple overlapping speed zones exist, the lowest speed limit applies.
 
 ### Speed Limit Policy Attributes
 The following attributes are used to define the `"speedLimit"` policy:
@@ -76,7 +77,7 @@ The following attributes are used to define the `"speedLimit"` policy:
 ```
 
 ## Low Traction
-A low traction policy indicates low traction driving conditions and specifies that AVs MUST enable low traction control. This policy is typically applied in areas with muddy, icy, or otherwise slippery surfaces.
+A low traction policy indicates low traction driving conditions and specifies that the AV shall enable low traction control. This policy is typically applied in areas with muddy, icy, or otherwise slippery conditions.
 
 ### Low Traction Policy Attributes
 Empty `"lowTraction"` object `{}` is used to indicate that the low traction policy is in effect.
@@ -101,7 +102,7 @@ Empty `"lowTraction"` object `{}` is used to indicate that the low traction poli
 ---
 
 ## Rough Road
-A rough road policy indicates rough driving conditions and specifies that AVs MUST enable control measures to manage the conditions. This policy is typically applied in areas where the road surface is not well maintained and could include potholes, uneven surfaces, or loose gravel.
+A rough road policy indicates rough driving conditions and specifies that the AV shall enable control measures to drive to these conditions. This policy is typically applied in areas where the road surface is not well maintained and could include potholes, uneven surfaces, or loose gravel.
 
 ### Rough Road Policy Attributes
 Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy is in effect.
