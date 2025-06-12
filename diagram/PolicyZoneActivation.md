@@ -21,21 +21,22 @@ sequenceDiagram
     par AV 1
         FMS->>AHS: Send ActivateZoneRequestV1 to AV 1
         AHS->>AV 1: Activate Policy Zone
+        AV 1->>AHS: Accept
+        AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
         AV 1->>AV 1: Adheres to Policy
         AV 1->>AHS: Activated
         AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
     and AV N
         FMS->>AHS: Send ActivateZoneRequestV1 to AV N
         AHS->>AV N: Activate Policy Zone
-        Note Over AV N: Unable to immediately adhere to policy
         AV N->>AHS: Accept
         AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+        Note Over AV N: Unable to immediately adhere to policy
+        AV N->>AV N: Adheres to Policy
+        AV N->>AHS: Activated
+        AHS->>FMS: AV N <br/> ActivateZoneResponseV1: Status "Activated"
     end
-    Note Over AV N: Adhering to policy
-    AV N->>AV N: Adheres to Policy
-    AV N->>AHS: Activated
 
-    AHS->>FMS: AV N <br/> ActivateZoneResponseV1: Status "Activated"
     User-->-FMS: Pending
     Note Over FMS: All AVs activated Policy Zone
     FMS-->>FMS: Policy Zone Activated
