@@ -8,7 +8,7 @@ This document describes the top-level data structure that serves as a message he
 | `"Protocol"` | `"Open-Autonomy"` | string | True | The protocol of the messages. |
 | `"Version"` | 1 | integer | True | The version of the protocol. |
 | `"Timestamp"` | DateTime | ISO 8601 | True | The date-time of when the message is sent in ISO 8601 format. |
-| `"EquipmentId"` | EquipmentId | UUID | False | The UUID identifying the equipment defined in the fleet definition, indicating the equipment that the message is intended for or from. This shall be in all messages except for ServiceIdentification |
+| `"EquipmentId"` | EquipmentId | UUID | False | The UUID identifying the equipment defined in the ISO 23725 - FleetDefinitionV2, indicating the equipment that the message is intended for or from. This shall be in all messages except for ServiceIdentification |
 
 ### Message Header Examples
 An example `ActivateZoneRequestV1` enclosed in the message header data structure

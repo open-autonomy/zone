@@ -12,6 +12,9 @@ Policy Zones are geographically bounded regions within a map in which Autonomous
 ## Policy Zones Specification
 This repository defines the messages and protocols used for managing policy zones in AHT, where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHT should behave within these zones.
 
+> [!IMPORTANT]
+> Policy Zones also leverages the FleetDefinitionV2 message from ISO 23725, which is a standard for the exchange of fleet definition information between AHS and FMS.
+
 The following policies are defined in this specification:
 - [Exclusion](./specification/V1/policies.md#exclusion)
 - [Speed Limit](./specification/V1/policies.md#speed-limit)

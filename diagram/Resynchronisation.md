@@ -14,12 +14,12 @@ sequenceDiagram
 
     Note over FMS,AHT N: On Connect Sequence
     Note over AHT N: AHT N went offline
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     Note Over AHT N: AHT N reconnects
 
     AHT N->>AHS: Connects
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
     
     AHS->>FMS: AHT N OutOfSyncV1
 
@@ -46,7 +46,7 @@ sequenceDiagram
 
     Note over FMS,AHT N: On Connect Sequence
     Note over AHT N: AHT N went offline
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     User->>FMS: Create Policy Zone
     FMS-->>FMS: Policy Zone Pending
@@ -62,7 +62,7 @@ sequenceDiagram
 
     AHT N->>AHS: Connects
     Note Over AHT N: Requires Policy Zones to operate
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     par Sync Active Zones
         AHS->>FMS: AHT N OutOfSyncV1
@@ -109,13 +109,13 @@ sequenceDiagram
 
     Note over FMS,AHT 1: On Connect Sequence
     Note over AHT 1: AHT 1 went offline
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     Note Over AHT 1: AHT 1 reconnects
 
     AHT 1->>AHS: Connects
     Note Over AHT 1: Requires Policy Zones to operate
-    AHS->>FMS: Update Fleet Definition
+    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     AHS->>FMS: AHT 1 OutOfSyncV1
 
