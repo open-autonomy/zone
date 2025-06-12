@@ -1,5 +1,5 @@
 # Policy Zones
-Policy Zones are geographically bounded regions within a map in which Autonomous Vehicle (AV) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AVs are forbidden to enter or driving within the zone; speed limits, in which AVs are required to regulate their speeds to comply with specified limits; and controlled access, where AVs may only enter if explicitly instructed to move into the zone.
+Policy Zones are geographically bounded regions within a map in which Autonomous Vehicle (AV) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AVs are forbidden to enter or driving within the zone; speed limits, in which AVs are required to regulate their speeds to comply with specified limits.
 
 ### Language
 | Acronyms | Extended Name |
@@ -20,7 +20,6 @@ The following policies are defined in this specification:
 - [Speed Limit](./specification/V1/policies.md#speed-limit)
 - [Low Traction](./specification/V1/policies.md#low-traction)
 - [Rough Road](./specification/V1/policies.md#rough-road)
-- [Controlled Access](./specification/V1/policies.md#controlled-access) [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
 > [!NOTE]
 > This list is not exhaustive and more policies can be added in the future.

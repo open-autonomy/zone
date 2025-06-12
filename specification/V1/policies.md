@@ -123,30 +123,3 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
   "type": "Feature"
 }
 ```
-
-## Controlled Access
-
-[![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
-
-A controlled access policy specifies that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
-
-### Controlled Access Policy Attributes
-Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
-
-### Example
-```json
-{
-  "geometry": {
-    "coordinates": ...,
-    "type": "Polygon"
-  },
-  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
-  "properties": {
-    "name": "Controlled Work Area",
-    "policies": {
-      "controlledAccess": {}
-    }
-  },
-  "type": "Feature"
-}
-```
