@@ -1,10 +1,10 @@
-# Synchronisation
+# Synchronization
 
-Synchronisation is required whenever an Autonomous Vehicle (AV) connects to the Autonomous Haulage System (AHS).
+Synchronization is required whenever an Autonomous Vehicle (AV) connects to the Autonomous Haulage System (AHS).
 
 > [!IMPORTANT]
 >- AVs shall be immobilized when their onboard policy zones are not synchrnised with the FMS.
->- The AHS shall monitor the connection to each AV, and synchronisation must also occur on re-connection after all lost communications events.
+>- The AHS shall monitor the connection to each AV, and synchronization must also occur on re-connection after all lost communications events.
 
 
 When an AV connects to the AHS, it shall send an `OutOfSyncV1` message to the Fleet Management System (FMS). This message indicates that the AV cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the AV is out of sync, the AV shall be immobilized until it has received and internally activated these zones.
