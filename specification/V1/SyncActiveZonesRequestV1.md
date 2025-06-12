@@ -3,16 +3,16 @@
 This message is sent by the Fleet Management System (FMS) to the Autonomous Haulage System (AHS) to provide an out of sync Autonomous Vehicle (AV) with the current complete set of **active** zones. The AV must activate all zones within the request before it is permitted to operate.
 
 > [!IMPORTANT]
-> The `SyncActiveZonesRequestV1` message shall not contain any zones that are pending. Zones that are pending at the time of the AV indicates that it is out of sync must be using the `ActivateZoneRequestV1` message.
+> The `SyncActiveZonesRequestV1` message shall not contain any zones that are pending. Pending zones shall be communicated separately using the `ActivateZoneRequestV1` message.
 ---
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `FMS`  | `OutOfSyncV1` | The AV to adher to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
+| `FMS`  | `OutOfSyncV1` | The AV to adhere to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
 
 ## Message Attributes
 
-The `SyncAllActiveZonesRequestV1` is 
+The `SyncAllActiveZonesRequestV1` is
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |

@@ -1,6 +1,6 @@
 # ActivateZoneRequestV1
 
-This message is sent by the Fleet Management System (FMS) to the Autonomous Haulage System (AHS) to indicate a policy zone has has been created on the FMS which the Autonomous Vehicle (AV) is expected to adhere to. The AV should then respond with an `ActivateZoneResponseV1` message indicating whether it has been accepted, activated or rejected the policy zone request (see `ActivateZoneResponseV1` for a description of response types).
+This message is sent by the Fleet Management System (FMS) to the Autonomous Haulage System (AHS) to indicate a policy zone has been created in the FMS which the Autonomous Vehicles (AV) are expected to adhere to. Each AV should then respond with an `ActivateZoneResponseV1` message indicating whether it has accepted, activated or rejected the policy zone request (see `ActivateZoneResponseV1` for a description of response types).
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -8,14 +8,14 @@ This message is sent by the Fleet Management System (FMS) to the Autonomous Haul
 
 ## Message Attributes
 
-The `ActivateZoneResponseV1` message consist of the following properties.
+The `ActivateZoneResponseV1` message consists of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId`, indicating which AV the `ActivateZoneRequestV1` message is for. 
+> The top-level message headers should contain the `EquipmentId`, indicating which AV the `ActivateZoneRequestV1` message is for.
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -36,8 +36,8 @@ The `ActivateZoneResponseV1` message consist of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when AV the latest time by which AV that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, AV should aim to adhere to the policy by this time but is not strictly required to do so if it is not possible or safe to do so. |
-| `"policies"` | Policies | Object | True | A set of policies that the AV should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
+| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when AV the latest time by which AV that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, AV should aim to adhere to the policy by this time but it is not strictly required to do so if it is not possible or safe to do so. |
+| `"policies"` | Policies | Object | True | A set of policies that the AV shall adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 
 ## Examples

@@ -1,5 +1,8 @@
 # Policy Zone Activation
-When a policy zone is created, the Fleet Management System (FMS) initiates the activation process by sending `ActivateZoneRequestV1` messages to the Autonomous Haulage System (AHS) for each of the Autonomous Vehicle (AV) pieces involved. The AHS then communicates with each of the AVs to activate the policy zone internally. The following sequence diagram illustrates this process.
+When a policy zone is created, the Fleet Management System (FMS) initiates the activation process by sending `ActivateZoneRequestV1` messages to the Autonomous Haulage System (AHS) for each of the Autonomous Vehicle (AV)s defined in the Fleet Definition. The AHS then communicates with each of the AVs to activate the policy zone internally. The following sequence diagram illustrates this process.
+
+> [!IMPORTANT]
+> All systems shall implement idempotency when managing Policy Zone Activations.
 
 ## Typical Policy Zone Activation
 
@@ -27,11 +30,11 @@ sequenceDiagram
         Note Over AV N: Unable to immediately adhere to policy
         AV N->>AHS: Accept
         AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
-    end 
+    end
     Note Over AV N: Adhering to policy
     AV N->>AV N: Adheres to Policy
     AV N->>AHS: Activated
-    
+
     AHS->>FMS: AV N <br/> ActivateZoneResponseV1: Status "Activated"
     User-->-FMS: Pending
     Note Over FMS: All AVs activated Policy Zone
@@ -40,7 +43,7 @@ sequenceDiagram
 ```
 
 ## Policy Zone Activation Deadline Exceed
-The policy zone can be created with a `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand that the AV must comply by the specified time.
+The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time.
 
 ```mermaid
 sequenceDiagram
@@ -65,7 +68,7 @@ sequenceDiagram
     Note Over AV 1: Adhering to Policy
     AV 1->>AV 1: Adhers to Policy
     AV 1->>AHS: Activated
-    
+
     AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
     User-->-FMS: Pending
     Note Over FMS: All AVs activated Policy Zone
@@ -74,10 +77,10 @@ sequenceDiagram
 ```
 
 ## Policy Zone Activate Rejection
-When a AV cannot adhere to the policy defined in the policy zone definition, AHS should send a `"Rejected"` status in the `ActiveZoneResponse` message to FM. The FMS will then notify the user accordingly.
+When an AV cannot adhere to the policy defined in the policy zone definition, the AHS should send a `"Rejected"` status in the `ActiveZoneResponse` message to FMS. The FMS will then notify the user accordingly.
 
 > [!NOTE]
-> If any vehicle rejects the `ActivateZoneRequestV1` message on the same zone, the zone will not be activated within the FMS and will be marked as `"pending"` until the user resolves the issue.
+> If any vehicle rejects the `ActivateZoneRequestV1` message for a given zone, the zone will not be activated within the FMS and will remain as `"pending"` until all AVs have successfully activated the zone.
 
 ```mermaid
 sequenceDiagram
@@ -129,11 +132,11 @@ sequenceDiagram
         Note Over AV N: Unable to immediately adhere to policy
         AV N->>AHS: Accept
         AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
-    end 
+    end
     Note Over AV N: Adhering to policy
     AV N->>AV N: Adheres to Policy
     AV N->>AHS: Activated
-    
+
     AHS->>FMS: AV N <br/> ActivateZoneResponseV1: Status "Activated"
     User-->-FMS: Pending
     Note Over FMS: All AVs activated Policy Zone

@@ -9,7 +9,7 @@ This message is sent by the Autonomous Haulage System (AHS) in response to the `
 
 ## Message Attributes
 
-The `ActivateZoneResponseV1` message consist the following properties
+The `ActivateZoneResponseV1` message consists of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
@@ -18,10 +18,14 @@ The `ActivateZoneResponseV1` message consist the following properties
 | `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |
 
 > [!IMPORTANT]
-> AV may choose to send an `Activate` response without sending an `Accepted` response first. In this case, the AV is indicating that it has activated the policy zone and is adhering to the associated policies. AV shall send an `Accepted` response if it needs to schedule the activation of the policy zone for a later time. AV shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
+
+- AV shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
+- An AV may choose to send an `Activate` response without sending an `Accepted` response first. In this case, the AV is indicating that it has activated the policy zone and is adhering to the specified policies. An AV shall send an `Accepted` response if it cannot immediately adhere to the policy zone.
+
+> AV shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
 
 > [!NOTE]
-> The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `ActivateZoneResponseV1` message 
+> The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `ActivateZoneResponseV1` message
 
 
 ## Examples

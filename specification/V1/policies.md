@@ -3,7 +3,8 @@
 This document describes the policies that can be applied to policy zones created by the Fleet Management System (FMS) and adhered to by the Autonomous Haulage System's (AHS) Autonomous Vehicles (AV). Each policy defines specific behaviors that AVs must follow while operating within the defined zones.
 
 > [!IMPORTANT]
-> A policy zone may contain may contain multiple policies. AV that has activated a policy zone must adhere to all policies defined within that zone.
+> - A policy zone may contain multiple policies. An AV that has activated a policy zone must adhere to <ins>all</ins> policies specified in the zone.
+
 
 ### Policies
 - [Exclusion](#exclusion)
@@ -14,7 +15,7 @@ This document describes the policies that can be applied to policy zones created
 
 
 ## Exclusion
-An exclusion policy indicates that vehicles MUST not enter the zone.
+An exclusion policy specifies that an AV MUST not enter the zone and MUST not move if it is already inside the zone. This includes preventing motion from all controlled motions - e.g. Raise Tray or Lower Tray.
 
 ### Exclusion Policy Attributes
 Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is in effect.
@@ -38,9 +39,9 @@ Empty `"exclusion"` object `{}` is used to indicate that the exclusion policy is
 ```
 
 ## Speed Limit
-A speed limit policy indicates that vehicles MUST reduce speed to the indicated limit while inside the zone.
+A speed limit policy specifies that AVs MUST reduce its speed to the specified limit before entering and while inside the zone.
 
-The speed limit can be defined either as an absolute value in m/s or as a percentage of the typical operating speed of the vehicle in that location.
+The speed limit can be defined either as an absolute value in m/s or as a percentage of the operating speed of the vehicle in that location.
 
 > [!IMPORTANT]
 > When multiple overlapping speed zones exist, the lowest speed limit applies.
@@ -51,9 +52,9 @@ The following attributes are used to define the `"speedLimit"` policy:
 | Key | Value | Format | Required | Description |
 | --- |:---:|:---:|:---:| --- |
 | `"type"` | [`"absolute"`, `"percent"`] | string | True | The `"value"` type of the speed limit. |
-| `"value"` | number | float | True | The speed limit value. <br/> - If `"type"` is `"absolute"`, this is the exact speed limit in m/s. <br/> - If `"type"` is `"percent"`, this is the percentage of the typical operating speed. |
+| `"value"` | number | float | True | The speed limit value. <br/> - If `"type"` is `"absolute"`, this is the exact speed limit in m/s. <br/> - If `"type"` is `"percent"`, this is the percentage of the operating speed as specified in the map. |
 
-### Example 
+### Example
 ```json
 {
   "geometry": {
@@ -75,7 +76,7 @@ The following attributes are used to define the `"speedLimit"` policy:
 ```
 
 ## Low Traction
-A low traction policy indicates that the vehicle must exercise caution due to reduced road grip conditions. This policy is typically applied in areas with muddy, icy, or otherwise slippery surfaces.
+A low traction policy indicates low traction driving conditions and specifies that AVs MUST enable low traction control. This policy is typically applied in areas with muddy, icy, or otherwise slippery surfaces.
 
 ### Low Traction Policy Attributes
 Empty `"lowTraction"` object `{}` is used to indicate that the low traction policy is in effect.
@@ -100,7 +101,7 @@ Empty `"lowTraction"` object `{}` is used to indicate that the low traction poli
 ---
 
 ## Rough Road
-A rough road policy indicates that the vehicle must exercise caution due to poor road conditions, such as potholes, uneven surfaces, or loose gravel. This policy is typically applied in areas where the road surface is not well maintained.
+A rough road policy indicates rough driving conditions and specifies that AVs MUST enable control measures to manage the conditions. This policy is typically applied in areas where the road surface is not well maintained and could include potholes, uneven surfaces, or loose gravel.
 
 ### Rough Road Policy Attributes
 Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy is in effect.
@@ -127,7 +128,7 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
 
 [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
-A controlled access policy indicates that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
+A controlled access policy specifies that vehicles MAY enter the zone, but only under specific conditions or with special permissions. This policy is typically used for areas that require authorization or have restricted access.
 
 ### Controlled Access Policy Attributes
 Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
@@ -141,7 +142,7 @@ Empty `"controlledAccess"` object `{}` is used to indicate that the controlled a
   },
   "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
   "properties": {
-    "name": "Controlled Access Area",
+    "name": "Controlled Work Area",
     "policies": {
       "controlledAccess": {}
     }

@@ -57,3 +57,11 @@ The following state machine describes the lifecycle of a policy zone as it trans
 ## Sequence diagrams
 
 See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scenarios that describe the interactions between the FMS, AHS, and AV when managing policy zones.
+
+## Communication Protocols
+
+This specification does not indicate the use of any specific communication protocol between the FMS and AHS. Integrators may therefore choose to support for one or more protocols such as HTTP, WebSockets, or MQTT.
+
+The selected communications protocols must implement the following requirements:
+ - Two-way connection monitoring
+
