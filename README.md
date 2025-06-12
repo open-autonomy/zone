@@ -4,7 +4,7 @@ Policy Zones are geographically bounded regions within a map in which Autonomous
 ### Language
 | Acronyms | Extended Name |
 | --- | --- |
-| AHS | Autonomouse Haulage System |
+| AHS | Autonomous Haulage System |
 | AV | Autonomous Vehicle|
 | FMS | Fleet Management System |
 
@@ -42,15 +42,15 @@ The following state machine describes the lifecycle of a policy zone as it trans
 > [!NOTE]
 > Policy zones that are rejected are still considered pending and can be re-sent to the truck for activation at a later time.
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Policy zones contain a number of fields that are immutable. These include:
 > - the geometry of the zone.
 > - the set of policies (and their respective attributes) associated with zone.
-> 
+>
 > Edits made by end-users to these attributes must be managed through the following process:
 > - Create a new policy zone reflecting the desired new state of the policy zone,
 > - Delete the previous version of the policy zone.
-> 
+>
 > This is intended to remove any ambiguity about the state of the policy zone.
 
 
