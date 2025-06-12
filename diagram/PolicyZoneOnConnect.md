@@ -9,11 +9,10 @@ sequenceDiagram
     participant AV 1
     participant AV N
 
-    AV 1->>AHS: Connected
-    AV N->>AHS: Connected
-
     FMS->AHS: Connected
 
     AHS->>FMS: ISO 23725 - FleetDefinitionV2
+
+    Note over FMS,AV N: Synchronization Sequence
 
 ```
