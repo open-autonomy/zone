@@ -1,28 +1,27 @@
 # Synchronisation
 
-Synchronisation is required whenever an Autonomous Vehicle (AV) connects to the Autonomous Haulage System (AHS)
+Synchronisation is required whenever an Autonomous Vehicle (AV) connects to the Autonomous Haulage System (AHS).
 
-Important
->- The AHS shall monitor the connection to AV, and synchronisation must also occur on re-connection after all lost communications events.
+> [!IMPORTANT]
+>- AVs shall be immobilized when their onboard policy zones are not synchrnised with the FMS.
+>- The AHS shall monitor the connection to each AV, and synchronisation must also occur on re-connection after all lost communications events.
 
-When an AV connects to the AHS, it shall send an `OutOfSyncV1` message to the Fleet Management System (FMS). This message indicates that the AV cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the AV is out of sync, it must not operate until it has received and internally activated these zones.
+
+When an AV connects to the AHS, it shall send an `OutOfSyncV1` message to the Fleet Management System (FMS). This message indicates that the AV cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the AV is out of sync, the AV shall be immobilized until it has received and internally activated these zones.
 
 ## Typical AV Connects
 ```mermaid
 sequenceDiagram
     participant FMS
     participant AHS
-    participant AV 1
     participant AV N
 
-    Note over FMS,AV N: On Connect Sequence
-    Note over AV N: AV N offline
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
+    Note over FMS, AHS: On Connect Sequence
+    Note over AV N: AV N offline & immobilized
 
     Note Over AV N: AV N connects
 
     AV N->>AHS: Connects
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     AHS->>FMS: AV N OutOfSyncV1
 
@@ -47,9 +46,8 @@ sequenceDiagram
     participant AV 1
     participant AV N
 
-    Note over FMS,AV N: On Connect Sequence
-    Note over AV N: AV N went offline
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
+    Note over FMS,AHS: On Connect Sequence
+    Note over AV N: AV N offline and immobilized
 
     User->>FMS: Create Policy Zone
     FMS-->>FMS: Policy Zone Pending
@@ -65,7 +63,6 @@ sequenceDiagram
 
     AV N->>AHS: Connects
     Note Over AV N: Requires Policy Zones to operate
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     par Sync Active Zones
         AHS->>FMS: AV N OutOfSyncV1
@@ -74,6 +71,7 @@ sequenceDiagram
         AHS->>AV N: Active Policy Zones
         AV N->>AV N: Adheres to all Policies
         AV N->>AHS: Activated
+        Note over AV N: AV N can operate
 
         AHS->>FMS: AV N <br/> SyncActiveZonesResponseV1: Activated
     and Activate Pending Zone
@@ -103,6 +101,9 @@ sequenceDiagram
 ## AV Connects - Reject Active Zones
 When an AV connects and the active policy zones are internally rejected, it must not operate. The AHS will send a `ActivateZoneResponseV1` with a status of "Rejected", and the FMS shall then notify the user of the error.
 
+> [!IMPORTANT]
+> An AV that rejects an `ActivateZoneRequestV1` shall remain immobilized.
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -110,15 +111,14 @@ sequenceDiagram
     participant AHS
     participant AV 1
 
-    Note over FMS,AV 1: On Connect Sequence
-    Note over AV 1: AV 1 went offline
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
+    Note over FMS,AHS: On Connect Sequence
+
+    Note over AV 1: AV 1 offline & immobilized
 
     Note Over AV 1: AV 1 connects
 
     AV 1->>AHS: Connects
     Note Over AV 1: Requires Policy Zones to operate
-    AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     AHS->>FMS: AV 1 OutOfSyncV1
 
@@ -128,7 +128,7 @@ sequenceDiagram
 
     AV 1->>AHS: Rejected
 
-    Note Over AV 1: AV 1 MUST not operate
+    Note Over AV 1: AV 1 MUST remain immobilized
 
     AHS->>FMS: ActivateZoneResponseV1: Status "Rejected"
 
@@ -143,7 +143,7 @@ sequenceDiagram
 In the event that the truck has been parked up and powered off, the AHS may choose to accept the policy zone change request on behalf of the truck.
 
 > [!IMPORTANT]
-> It is the responsibility of the AHS to ensure that it is safe to respond on behalf of the AV.
+> It is the responsibility of the AHS to ensure that it is safe to respond on behalf of an AV.
 
 The following message provides an example of a policy zone change request that is accepted after the truck has been powered off.
 
@@ -220,7 +220,7 @@ In such an event, the FMS may attempt to continue sending the policy zone change
 In the event that a truck has lost connection to the AHS, the AHS may choose to accept the policy zone change request after the truck can be guaranteed to have come to a stop due to the comms loss timeout.
 
 > [!IMPORTANT]
-> It is the responsibility of the AHS to ensure that it is safe to respond on behalf of the AV.
+> It is the responsibility of the AHS to ensure that it is safe to respond on behalf of an AV.
 
 The following message provides an example of a policy zone change request that is accepted after the truck has come to a stop.
 
