@@ -1,16 +1,16 @@
 # Policy Zones
-Policy Zones are geographically bounded regions within a map in which Autonomous Haulage Truck (AHT) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AHTs are forbidden to enter or driving within the zone; speed limits, in which AHTs are required to regulate their speeds to comply with specified limits; and controlled access, where AHTs may only enter if explicitly instructed to move into the zone.
+Policy Zones are geographically bounded regions within a map in which Autonomous Vehicle (AV) are required to modify their behaviour to comply with one or more policies associated with that zone. Examples of policies include: Exclusions, where AVs are forbidden to enter or driving within the zone; speed limits, in which AVs are required to regulate their speeds to comply with specified limits; and controlled access, where AVs may only enter if explicitly instructed to move into the zone.
 
 ### Language
 | Acronyms | Extended Name |
 | --- | --- |
 | AHS | Autonomouse Haulage System |
-| AHT | Autonomous Haulage Truck |
+| AV | Autonomous Vehicle|
 | FMS | Fleet Management System |
 
 
 ## Policy Zones Specification
-This repository defines the messages and protocols used for managing policy zones in AHT, where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AHT should behave within these zones.
+This repository defines the messages and protocols used for managing policy zones in AV, where policy zones are described using the GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) geospatial data interchange format. Policies can be associated with these zones via the `properties` field of the GeoJSON object, allowing for flexible and extensible definitions of how AV should behave within these zones.
 
 > [!IMPORTANT]
 > Policy Zones also leverages the FleetDefinitionV2 message from ISO 23725, which is a standard for the exchange of fleet definition information between AHS and FMS.
@@ -56,4 +56,4 @@ The following state machine describes the lifecycle of a policy zone as it trans
 
 ## Sequence diagrams
 
-See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scenarios that describe the interactions between the FMS, AHS, and AHT when managing policy zones.
+See [Sequence Diagrams](diagram/SequenceDiagrams.md) for a detailed set of scenarios that describe the interactions between the FMS, AHS, and AV when managing policy zones.

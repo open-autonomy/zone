@@ -1,6 +1,6 @@
 # DeactivateZoneResponseV1
 
-This message is sent by the Autonomous Haulage System (AHS) in response to the `DeactivateZoneRequestV1` message from the Fleet Management System (FMS), indicating whether the Autonomous Haulage Truck (AHT) was successful in removing the zone from its internal set of active policy zones zones.
+This message is sent by the Autonomous Haulage System (AHS) in response to the `DeactivateZoneRequestV1` message from the Fleet Management System (FMS), indicating whether the Autonomous Vehicle (AV) was successful in removing the zone from its internal set of active policy zones zones.
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ The `DeactivateZoneResponseV1` message consist the following properties
 | `"Status"` | [`Accepted`] | String | True |  |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId` which indicate the origin AHT of the `DeactivateZoneResponseV1` message 
+> The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `DeactivateZoneResponseV1` message 
 
 ## Examples
 ### Typical Message

@@ -1,9 +1,9 @@
 # Policies
 
-This document describes the policies that can be applied to policy zones created by the Fleet Management System (FMS) and adhered to by the Autonomous Haulage System's (AHS) Autonomous Haulage Trucks (AHT). Each policy defines specific behaviors that AHTs must follow while operating within the defined zones.
+This document describes the policies that can be applied to policy zones created by the Fleet Management System (FMS) and adhered to by the Autonomous Haulage System's (AHS) Autonomous Vehicles (AV). Each policy defines specific behaviors that AVs must follow while operating within the defined zones.
 
 > [!IMPORTANT]
-> A policy zone may contain may contain multiple policies. AHT that has activated a policy zone must adhere to all policies defined within that zone.
+> A policy zone may contain may contain multiple policies. AV that has activated a policy zone must adhere to all policies defined within that zone.
 
 ### Policies
 - [Exclusion](#exclusion)

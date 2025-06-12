@@ -1,130 +1,130 @@
 # Resynchronisation
 
-Resynchronisation is required whenever an Autonomous Haulage Truck (AHT) is switched on, or come back online after having lost communications to the Autonomous Haulage System (AHS) (it is up to the AHS to determine what consititutes a loss of communication event).
+Resynchronisation is required whenever an Autonomous Vehicle (AV) is switched on, or come back online after having lost communications to the Autonomous Haulage System (AHS) (it is up to the AHS to determine what consititutes a loss of communication event).
 
-When an AHT comes back online, it should send an `OutOfSyncV1` message to the Fleet Management System (FMS). This message indicates that the AHT cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the AHT is out of sync, it must not operate until it has received and internally activated these zones.
+When an AV comes back online, it should send an `OutOfSyncV1` message to the Fleet Management System (FMS). This message indicates that the AV cannot guarantee that it has an up-to-date list of active policy zones, and requires the FMS to send the current set of active zones through a `SyncActiveZonesRequestV1`. While the AV is out of sync, it must not operate until it has received and internally activated these zones.
 
-## Typical AHT Reconnects
+## Typical AV Reconnects
 ```mermaid
 sequenceDiagram
     participant FMS
     participant AHS
-    participant AHT 1
-    participant AHT N
+    participant AV 1
+    participant AV N
 
-    Note over FMS,AHT N: On Connect Sequence
-    Note over AHT N: AHT N went offline
+    Note over FMS,AV N: On Connect Sequence
+    Note over AV N: AV N went offline
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
-    Note Over AHT N: AHT N reconnects
+    Note Over AV N: AV N reconnects
 
-    AHT N->>AHS: Connects
+    AV N->>AHS: Connects
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
     
-    AHS->>FMS: AHT N OutOfSyncV1
+    AHS->>FMS: AV N OutOfSyncV1
 
-    FMS->>AHS: AHT N <br/> SyncActiveZonesRequestV1
-    AHS->>AHT N: Active Policy Zones
+    FMS->>AHS: AV N <br/> SyncActiveZonesRequestV1
+    AHS->>AV N: Active Policy Zones
 
-    AHT N->>AHS: Activated
+    AV N->>AHS: Activated
 
-    AHS->>FMS: AHT N <br/> SyncActiveZonesResponseV1: Activated
+    AHS->>FMS: AV N <br/> SyncActiveZonesResponseV1: Activated
 
-    Note Over AHT N: AHT N can now operate
+    Note Over AV N: AV N can now operate
 ```
 
-## AHT Reconnects With New Pending Zone
-When an AHT reconnects while a new policy zone is pending, the AHT must internally activates all active policy zones sent via `SyncActiveZonesRequestV1` in order to operate. The AHT will also receive an `ActivateZoneRequestV1` message for each of the pending policy zones to be activated internally as well.
+## AV Reconnects With New Pending Zone
+When an AV reconnects while a new policy zone is pending, the AV must internally activates all active policy zones sent via `SyncActiveZonesRequestV1` in order to operate. The AV will also receive an `ActivateZoneRequestV1` message for each of the pending policy zones to be activated internally as well.
 
 ```mermaid
 sequenceDiagram
     participant User
     participant FMS
     participant AHS
-    participant AHT 1
-    participant AHT N
+    participant AV 1
+    participant AV N
 
-    Note over FMS,AHT N: On Connect Sequence
-    Note over AHT N: AHT N went offline
+    Note over FMS,AV N: On Connect Sequence
+    Note over AV N: AV N went offline
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     User->>FMS: Create Policy Zone
     FMS-->>FMS: Policy Zone Pending
     FMS-->+User: Pending
 
-    FMS->>AHS: Send ActivateZoneRequestV1 to AHT 1
-    AHS->>AHT 1: Activate Policy Zone
-    Note over AHT 1: Unable to immediately adhere to policy
-    AHT 1->>AHS: Accepted
+    FMS->>AHS: Send ActivateZoneRequestV1 to AV 1
+    AHS->>AV 1: Activate Policy Zone
+    Note over AV 1: Unable to immediately adhere to policy
+    AV 1->>AHS: Accepted
     AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
 
-    Note Over AHT N: AHT N reconnects
+    Note Over AV N: AV N reconnects
 
-    AHT N->>AHS: Connects
-    Note Over AHT N: Requires Policy Zones to operate
+    AV N->>AHS: Connects
+    Note Over AV N: Requires Policy Zones to operate
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
     par Sync Active Zones
-        AHS->>FMS: AHT N OutOfSyncV1
+        AHS->>FMS: AV N OutOfSyncV1
 
-        FMS->>AHS: AHT N <br/> SyncActiveZonesRequestV1
-        AHS->>AHT N: Active Policy Zones
+        FMS->>AHS: AV N <br/> SyncActiveZonesRequestV1
+        AHS->>AV N: Active Policy Zones
 
-        AHT N->>AHS: Activated
+        AV N->>AHS: Activated
 
-        AHS->>FMS: AHT N <br/> SyncActiveZonesResponseV1: Activated
+        AHS->>FMS: AV N <br/> SyncActiveZonesResponseV1: Activated
     and Activate Pending Zone
         loop
-            FMS->>AHS: Send ActivateZoneRequestV1 to AHT N
-            AHS->>AHT N: Activate Policy Zone
-            AHT N->>AHT N: Adheres to Policy
-            AHT N->>AHS: Activated
+            FMS->>AHS: Send ActivateZoneRequestV1 to AV N
+            AHS->>AV N: Activate Policy Zone
+            AV N->>AV N: Adheres to Policy
+            AV N->>AHS: Activated
             AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
         end
     end
 
-    Note Over AHT 1: Adhering to policy
-    AHT 1->>AHT 1: Adheres to Policy
-    AHT 1->>AHS: Activated
-     AHS->>FMS: AHT 1 <br/> ActivateZoneResponseV1: Status "Activated"
+    Note Over AV 1: Adhering to policy
+    AV 1->>AV 1: Adheres to Policy
+    AV 1->>AHS: Activated
+     AHS->>FMS: AV 1 <br/> ActivateZoneResponseV1: Status "Activated"
 
 
     User-->-FMS: Pending
 
-    Note Over FMS: All AHTs activated Policy Zone
+    Note Over FMS: All AVs activated Policy Zone
     FMS-->>FMS: Policy Zone Activated
 
     FMS-->>User: Policy Zone Activated
 ```
 
-## AHT Reconnects - Reject Active Zones
-When an AHT reconnects and the active policy zones are internally rejected, it must not operate. The AHS will send a `ActivateZoneResponseV1` with a status of "Rejected", and the FMS shall then notify the user of the error.
+## AV Reconnects - Reject Active Zones
+When an AV reconnects and the active policy zones are internally rejected, it must not operate. The AHS will send a `ActivateZoneResponseV1` with a status of "Rejected", and the FMS shall then notify the user of the error.
 
 ```mermaid
 sequenceDiagram
     participant User
     participant FMS
     participant AHS
-    participant AHT 1
+    participant AV 1
 
-    Note over FMS,AHT 1: On Connect Sequence
-    Note over AHT 1: AHT 1 went offline
+    Note over FMS,AV 1: On Connect Sequence
+    Note over AV 1: AV 1 went offline
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
-    Note Over AHT 1: AHT 1 reconnects
+    Note Over AV 1: AV 1 reconnects
 
-    AHT 1->>AHS: Connects
-    Note Over AHT 1: Requires Policy Zones to operate
+    AV 1->>AHS: Connects
+    Note Over AV 1: Requires Policy Zones to operate
     AHS->>FMS: Update ISO 23725 - FleetDefinitionV2
 
-    AHS->>FMS: AHT 1 OutOfSyncV1
+    AHS->>FMS: AV 1 OutOfSyncV1
 
-    FMS->>AHS: AHT 1 <br/> SyncActiveZonesRequestV1
-    AHS->>AHT 1: Active Policy Zones
+    FMS->>AHS: AV 1 <br/> SyncActiveZonesRequestV1
+    AHS->>AV 1: Active Policy Zones
 
-    AHT 1->>AHS: Rejected
+    AV 1->>AHS: Rejected
 
-    Note Over AHT 1: AHT 1 MUST not operate
+    Note Over AV 1: AV 1 MUST not operate
 
     AHS->>FMS: ActivateZoneResponseV1: Status "Rejected"
 

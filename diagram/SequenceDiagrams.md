@@ -1,5 +1,5 @@
 # Policy Zone Sequence Diagrams
-The following document describes when the messages should be sent during the lifecycle of the policy zone messages between the Fleet Management System (FMS), the Autonomous Haulage System (AHS) and the Autonomous Haulage Trucks (AHT).
+The following document describes when the messages should be sent during the lifecycle of the policy zone messages between the Fleet Management System (FMS), the Autonomous Haulage System (AHS) and the Autonomous Vehicles (AV).
 
 - **[Policy Zone Activation](PolicyZoneActivation.md)**
     - [Policy Zone Activation with Deadline](PolicyZoneActivation.md#policy-zone-activation-deadline-exceed)
@@ -8,6 +8,6 @@ The following document describes when the messages should be sent during the lif
 - **[Policy Zone Deletion](PolicyZoneDeletion.md)**
 - **[Policy Zone Updated](PolicyZoneUpdated.md)**
 - **[Resynchronisation](Resynchronisation.md)**
-    - [Typical AHT Reconnects](Resynchronisation.md#typical-aht-reconnects)
-    - [AHT Reconnects With New Pending Zone](Resynchronisation.md#aht-reconnects-with-new-pending-zone)
-    - [AHT Reconnects With Rejection](Resynchronisation.md#aht-reconnects---reject-active-zones)
+    - [Typical AV Reconnects](Resynchronisation.md#typical-AV-reconnects)
+    - [AV Reconnects With New Pending Zone](Resynchronisation.md#AV-reconnects-with-new-pending-zone)
+    - [AV Reconnects With Rejection](Resynchronisation.md#AV-reconnects---reject-active-zones)
