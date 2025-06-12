@@ -11,7 +11,7 @@ The following document describes when the messages should be sent during the lif
     - [Policy Zone Activation (REST Implementation)](PolicyZoneActivation.md#implementation-with-rest-from-fms-to-ahs)
 - **[Policy Zone Deletion](PolicyZoneDeletion.md)**
 - **[Policy Zone Updated](PolicyZoneUpdated.md)**
-- **[Resynchronization](Resynchronization.md)**
-    - [Typical AV Reconnects](Resynchronization.md#typical-AV-reconnects)
-    - [AV Reconnects With New Pending Zone](Resynchronization.md#AV-reconnects-with-new-pending-zone)
-    - [AV Reconnects With Rejection](Resynchronization.md#AV-reconnects---reject-active-zones)
+- **[Policy Zone Synchronization](Synchronization.md)**
+    - [Typical AV Reconnects](Synchronization.md#typical-AV-reconnects)
+    - [AV Reconnects With New Pending Zone](Synchronization.md#AV-reconnects-with-new-pending-zone)
+    - [AV Reconnects With Rejection](Synchronization.md#AV-reconnects---reject-active-zones)
