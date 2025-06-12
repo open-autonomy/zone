@@ -4,8 +4,9 @@ This document describes Version 1 of the Policy Zone Specification.
 This specification defines the messages and protocols used for managing policy zones in Autonomous Haulage System (AHS). It includes the activation, deactivation, synchronization, and handling of policy zones to ensure safe operation of the AV.
 
 # Message definition
-Find below the Specification for the Version 2 protocol for the spot service of Open-Autonomy
+Find below the Specification for the Version 1 protocol of policy zones for Open-Autonomy
 - [Policies](#policies)
+- [Fleet Synchronization](#fleet-synchronization)
 - [Policy Zone Messages](#policy-zone-messages)
 
 # Policies
@@ -15,10 +16,12 @@ The following policies are defined in this specification.
 - [Speed Limit](policies.md#speed-limit)
 - [Low Traction](policies.md#low-traction)
 - [Rough Road](policies.md#rough-road)
-- [Controlled Access](policies.md#controlled-access) [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
 > [!WARNING]
 > This list is not exhaustive and more policies can be added in the future.
+
+# Fleet Synchronization
+To facilitate policy zone state synchronization between the FMS and the fleet of AVs managed by the AHS, The AHS must inform the FMS of the current configuration of the fleet. This specification uses the [FleetDefinitionV2](FleetDefinitionV2.md) message from ISO 23725 to exchange fleet definition information between the AHS and FMS.
 
 # Policy Zone Messages
 

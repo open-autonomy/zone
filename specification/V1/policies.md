@@ -12,7 +12,6 @@ This document describes the policies that can be applied to policy zones created
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
-- [Controlled Access](#controlled-access) [![experimental](https://badges.github.io/stability-badges/dist/experimental.svg)](https://github.com/badges/stability-badges)
 
 
 ## Exclusion
