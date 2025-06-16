@@ -26,14 +26,70 @@ The following state machine describes the lifecycle of a policy zone as it trans
  * The `activationDeadline` is specified in UTC.
 
 ### All Policy Zones Activated
-![image](draw.io/AllPolicyZonesActivated.svg)
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment
+
+    User->>FMS: Activate All Policy Zones <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    FMS->>AHS: Activate All Policy Zones <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    AHS->>Equipment: Activate All Policy Zones <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    Equipment->>AHS: Accept
+    AHS-->>FMS: Accept 202
+    FMS-->>User: Pending
+
+    Equipment->>AHS: Activated (Zone 1)
+    AHS-->>FMS: ActivateZoneResponseV1 (Zone 1)
+    FMS-->>User: Policy Zone 1 Active
+
+    Equipment->>AHS: Activated (Zone 2)
+    AHS-->>FMS: ActivateZoneResponseV1 (Zone 2)
+    FMS-->>User: Policy Zone 2 Active
+```
+
 </br></br>
 ### Single Policy Zone Activated
-![image](draw.io/PolicyZoneActivated.svg)
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment
+
+    User->>FMS: Activate Policy Zone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    FMS->>AHS: Activate Policy Zone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    AHS->>Equipment: ActivatePolicyZone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    Equipment->>AHS: Accepted
+    AHS-->>FMS: Accept 202
+    FMS-->>User: Pending
+
+    Note left of FMS: Zone accepted for all equipment (waiting)
+
+    Equipment->>AHS: Activated
+    AHS-->>FMS: ActivateZoneResponseV1
+    FMS-->>User: Policy Active
+
+    Note left of FMS: Zone activated for all equipment (waiting)
+```
+
 </br></br>
 ### Single Policy Zone Rejected
-![image](draw.io/PolicyZoneRejected.svg)
+```mermaid
+sequenceDiagram
+    participant User
+    participant FMS
+    participant AHS
+    participant Equipment
 
+    User->>FMS: Activate Policy Zone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    FMS->>AHS: Activate Policy Zone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    AHS->>Equipment: ActivatePolicyZone <br/> (Optional) Activation Deadline: ISO 8601 UTC
+    Equipment->>AHS: Rejected
+    AHS-->>FMS: Reject 400 (Eg. Invalid placement)
+    FMS-->>User: Error message
+```
 
 ## General connection rules
 - All requests are done from FMS to AHS through HTTP and is done individal per autonomous vehicle. 
