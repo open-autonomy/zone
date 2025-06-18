@@ -36,6 +36,9 @@ sequenceDiagram
     Note Over AV N: AV N can now operate
 ```
 
+> [!IMPORTANT]
+> The FMS must 'Clear AV N Activations for Pending Zones' after receiving an OutOfSync from 'AV N' because it needs to assume that 'AV N' has lost or cleared its orinternal memory.
+
 ## AV Connects With New Pending Zone
 When an AV connects while a new policy zone is pending, the AV must internally activates all active policy zones sent via `SyncActiveZonesRequestV1` in order to operate. The AV will also receive an `ActivateZoneRequestV1` message for each of the pending policy zones to be activated internally as well.
 
