@@ -43,9 +43,8 @@ sequenceDiagram
     FMS-->>User: Policy Zone Activated
 ```
 
-> [!NOTE]
-> Why does the system require a 2-step activation confirmation?
-> - Accept allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to. This helps the system avoid unnecessary retries and allows for better transparency to be provided to the user.
+> [!TIP]
+> The 2-step activation confirmation helps the system avoid unnecessary retries and allows for better transparency to be provided to the user. Accept allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to.
 
 ## Policy Zone Activation Deadline Exceed
 The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time.
