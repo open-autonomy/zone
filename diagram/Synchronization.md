@@ -24,6 +24,7 @@ sequenceDiagram
     AV N->>AHS: Connects
 
     AHS->>FMS: AV N OutOfSyncV1
+    FMS->>FMS: Clear AV N Activations for Pending Zones
 
     FMS->>AHS: AV N <br/> SyncActiveZonesRequestV1
     AHS->>AV N: Active Policy Zones
@@ -54,6 +55,7 @@ sequenceDiagram
     FMS-->+User: Pending
 
     FMS->>AHS: Send ActivateZoneRequestV1 to AV 1
+
     AHS->>AV 1: Activate Policy Zone
     Note over AV 1: Unable to immediately adhere to policy
     AV 1->>AHS: Accepted
@@ -66,6 +68,7 @@ sequenceDiagram
 
     par Sync Active Zones
         AHS->>FMS: AV N OutOfSyncV1
+        FMS->>FMS: Clear AV N Activations for Pending Zones
 
         FMS->>AHS: AV N <br/> SyncActiveZonesRequestV1
         AHS->>AV N: Active Policy Zones
@@ -121,6 +124,7 @@ sequenceDiagram
     Note Over AV 1: Requires Policy Zones to operate
 
     AHS->>FMS: AV 1 OutOfSyncV1
+    FMS->>FMS: Clear AV 1 Activations for Pending Zones
 
     FMS->>AHS: AV 1 <br/> SyncActiveZonesRequestV1
     AHS->>AV 1: Active Policy Zones
