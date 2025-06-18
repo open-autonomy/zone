@@ -19,7 +19,7 @@ The `SyncAllActiveZonesRequestV1` is
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
 >[!NOTE]
-> The top-level message headers should contain the `AVId`, indicating which AV the `SyncAllActiveZonesRequestV1` message is for.
+> The top-level message headers should contain the `EquipmentId`, indicating which AV the `SyncAllActiveZonesRequestV1` message is for.
 
 ### Zone Object
 | Key | Value | Format | Required | Description |
@@ -50,7 +50,7 @@ The `SyncAllActiveZonesRequestV1` is
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2024-08-23T08:19:56.631Z",
-  "AVId": "e4de3723-a315-4506-b4e9-537088a0eabf",
+  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesRequestV1": {
     "Zones": [
         {

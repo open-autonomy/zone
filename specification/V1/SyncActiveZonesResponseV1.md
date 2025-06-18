@@ -17,7 +17,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 | `"ActivatedZones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated by the AV |
 
 >[!NOTE]
-> The top-level message headers should contain the `AVId` which indicate the origin AV of the `SyncActiveZonesResponseV1` message
+> The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `SyncActiveZonesResponseV1` message
 
 ### ZoneIdObject
 | Key | Value | Format | Required | Description |
@@ -32,7 +32,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
   "Protocol": "Open-Autonomy",
   "Version": 1,
   "Timestamp": "2021-09-01T12:00:00Z",
-  "AVId": "e4de3723-a315-4506-b4e9-537088a0eabf",
+  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesResponseV1": {
     "Status": "Activated",
     "ActivatedZones": [
