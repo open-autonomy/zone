@@ -47,10 +47,13 @@ sequenceDiagram
 > The 2-step activation confirmation helps the system avoid unnecessary retries and allows for better transparency to be provided to the user. Accept allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to.
 
 ## Policy Zone Activation Deadline Exceed
-The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time.
+The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time. Once the activation deadline is reached, the AV must make best effort to adhere to the policy. Once the AV is adhereing to the policy, it should send its policy Acivation response.
 
 > [!NOTE]
-> The inclusion of the activation deadline does not change the activation process from the perspective of the FMS. For FMS to consider the zone active in the FMS, the FMS still requires confirmation from all AVs that the zone has been activated.
+> The inclusion of the activation deadline does not change the activation process from the perspective of the FMS. For the FMS to consider the zone active, the FMS still needs to receive confirmation from all AVs that the zone has been activated.
+
+> [!TIP] When would I use an activation deadlines?
+> Activation deadlines lets the user create a zones as 'exit only' while the zone is transitioning from Pending to Active. This helps users create zones without the need to manually traffic manage the transition.
 
 ```mermaid
 sequenceDiagram
@@ -73,7 +76,7 @@ sequenceDiagram
     Note Over AV 1: Activation Dealine Exceeded
     Note Over AV 1: Proceed to Adheres to Policy ...
     Note Over AV 1: Adhering to Policy
-    AV 1->>AV 1: Adhers to Policy
+    AV 1->>AV 1: Adheres to Policy
     AV 1->>AHS: Activated
 
     AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
