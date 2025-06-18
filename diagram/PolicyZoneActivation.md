@@ -43,7 +43,8 @@ sequenceDiagram
     FMS-->>User: Policy Zone Activated
 ```
 
-> [!NOTE] Why does the system require a 2-step activation confirmation?
+> [!NOTE]
+> Why does the system require a 2-step activation confirmation?
 > - Accept allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to. This helps the system avoid unnecessary retries and allows for better transparency to be provided to the user.
 
 ## Policy Zone Activation Deadline Exceed
