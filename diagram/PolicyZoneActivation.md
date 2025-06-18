@@ -52,7 +52,7 @@ The policy zone can be created with the `activationDealine` property. This field
 > [!NOTE]
 > The inclusion of the activation deadline does not change the activation process from the perspective of the FMS. For the FMS to consider the zone active, the FMS still needs to receive confirmation from all AVs that the zone has been activated.
 
-> [!TIP] When would I use an activation deadlines?
+> [!TIP]
 > Activation deadlines lets the user create a zones as 'exit only' while the zone is transitioning from Pending to Active. This helps users create zones without the need to manually traffic manage the transition.
 
 ```mermaid
