@@ -16,6 +16,7 @@ The `SyncAllActiveZonesRequestV1` is
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
+| `"RequestId"` | RequestId | UUID | True | A unique identifier for the request. This is used to match the request with the response. |
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
 >[!NOTE]
@@ -52,6 +53,7 @@ The `SyncAllActiveZonesRequestV1` is
   "Timestamp": "2024-08-23T08:19:56.631Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesRequestV1": {
+    "RequestId": "00000000-0000-0000-0000-000000000001",
     "Zones": [
         {
         "type": "Feature",
