@@ -23,9 +23,11 @@ The `SyncAllActiveZonesRequestV1` is
 > The top-level message headers should contain the `EquipmentId`, indicating which AV the `SyncAllActiveZonesRequestV1` message is for.
 
 ### Zone Object
+The Zone object is a GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) compatible feature object that describes the policy zone. It contains the following properties:
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"type"` | `Feature` | String | True | The feature type |
+| `"id"` | ZoneId | String | True | A unique identifier for the policy zone |
+| `"type"` | `Feature` | String | True | The GeoJSON compatible feature type |
 | `"geometry"` | Geometry | Object | True | A GeoJSON compatible geometry object |
 | `"properties"` | Properties | Object | True | A GeoJSON compatible properties object |
 
