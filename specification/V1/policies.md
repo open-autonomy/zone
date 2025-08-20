@@ -12,6 +12,7 @@ This document describes the policies that can be applied to policy zones created
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
+- [Controlled Access](#controlled-access)
 
 
 ## Exclusion
@@ -118,6 +119,31 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
     "name": "Rough Road Area",
     "policies": {
       "roughRoad": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+---
+
+## Controlled Access
+Only trucks with a destination spot within the zone are allowed to enter the zone. Trucks within the zone are allowed to operate within the zone until they leave the zone. A spot is considered to be inside the zone if the entire spot origin (point) is within the zone at that spot. The typical use case for this zone is when a load unit is working and want to have a way of controlling which trucks can enter in its vicinity. By only allowing trucks that has an assignment to perform in the area to enter the zone this can be ensured. Another use case could be at refuel or maintenance. AV is considered inside if any part of AV is inside zone.
+
+### Controlled Access Policy Attributes
+Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
+
+### Example
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+	"id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+  "properties": {
+    "name": "Controlled Access Area",
+    "policies": {
+      "controlledAccess": {}
     }
   },
   "type": "Feature"
