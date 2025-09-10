@@ -15,16 +15,7 @@ This repository defines the messages and protocols used for managing policy zone
 > [!IMPORTANT]
 > Policy Zones also leverages the FleetDefinitionV2 message from ISO 23725, which is a standard for the exchange of fleet definition information between AHS and FMS.
 
-The following policies are defined in this specification:
-- [Exclusion](./specification/V1/policies.md#exclusion)
-- [Speed Limit](./specification/V1/policies.md#speed-limit)
-- [Low Traction](./specification/V1/policies.md#low-traction)
-- [Rough Road](./specification/V1/policies.md#rough-road)
-
-> [!NOTE]
-> This list is not exhaustive and more policies can be added in the future.
-
-For more information on the messages used in the V1 protocol for managing policy zones, see the [V1 Specification](specification/V1/README.md).
+The policies are defined in the [V1 Policy Zone Specification](./specification/V1/README.md).
 
 ## Policy Zone State Machine
 
