@@ -132,23 +132,15 @@ A controlled acccess policy restricts which AV's are able to enter into, and ope
 The typical use case for this zone is when a load unit is working and it wants to have a way of controlling which trucks can enter its vicinity. This can be assured by only allowing trucks that have a spot assignment within the zone permission to enter the zone. All trucks that do not have a spot assignment within the zone must not enter the zone.
 
 Another use case could be at refuel or in a maintenance area, whereby it is desired that limited access to the area is ensured. 
+
+### Behavioural summary
 * Only AV's with a destination spot within the zone are allowed to enter the zone. 
   * A spot is considered to be inside the zone if the entire spot origin (point) is within the zone at that spot.
 * AV's within the zone are allowed to operate within the zone until they leave the zone.
-* An AV is considered inside if any part of AV is inside zone.
-* The zone is "owned" by a piece of equipment, identified by its [Equipment Id](MessageHeader.md#Message-Attributes). 
-  * The owner of the zone is the only one permitted to make changes to the zone.
-  * The owner of the zone is also the only one permitted to manage (create, assign, etc) spots within the zone.
-  * It is recommended that the AV validates that the spot owner and the zone owner are the same.
-* When a zone with a controlled access policy is created in an area that an AV is currently traversing, the zone should be accepted, but not activated until the AV has left the area and is able to comply with the controlled access policy.
-
+* An AV is considered inside if any part of the AV is inside zone.
 
 ### Controlled Access Policy Attributes
-The following attributes are used to define the `"controlledAccess"` policy:
-
-| Key | Value | Format | Required | Description |
-| --- |:---:|:---:|:---:| --- |
-| `"ownerId"` | EquipmentId | UUID | True | The UUID identifying the equipment defined in the ISO 23725 - FleetDefinitionV2, indicating the equipment that has ownership of the zone of which the controlled access policy applied. |
+Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
 
 ### Example
 ```json
@@ -161,9 +153,7 @@ The following attributes are used to define the `"controlledAccess"` policy:
   "properties": {
     "name": "Controlled Access Area",
     "policies": {
-      "controlledAccess": {
-        "ownerId": "e4de3723-a315-4506-b4e9-537088a0eabf"
-      }
+      "controlledAccess": {}
     }
   },
   "type": "Feature"
