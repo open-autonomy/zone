@@ -127,17 +127,12 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
 ---
 
 ## Controlled Access
-A controlled acccess policy restricts which AV's are able to enter into, and operate within, the zone. 
+A controlled access policy specifies that the AV shall not enter the zone unless it has been granted permission. This zone is typically used by an operator to manage vehicles accessing their work area.
 
-The typical use case for this zone is when a load unit is working and it wants to have a way of controlling which trucks can enter its vicinity. This can be assured by only allowing trucks that have a spot assignment within the zone permission to enter the zone. All trucks that do not have a spot assignment within the zone must not enter the zone.
-
-Another use case could be at refuel or in a maintenance area, whereby it is desired that limited access to the area is ensured. 
-
-### Behavioural summary
-* Only AV's with a destination spot within the zone are allowed to enter the zone. 
-  * A spot is considered to be inside the zone if the entire spot origin (point) is within the zone at that spot.
-* AV's within the zone are allowed to operate within the zone until they leave the zone.
-* An AV is considered inside if any part of the AV is inside zone.
+* An AV is granted permission if the AV has been dispatched to a spot inside the zone.
+    * A spot is considered inside the zone if the spot's pose is located inside the zone.
+* AVs that are inside the zone are granted permission implicitly and are permitted to operate until they have left the zone.
+    * AVs are considered to be inside the zone if any part of the AV's footprint is inside the zone.
 
 ### Controlled Access Policy Attributes
 Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
