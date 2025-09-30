@@ -13,10 +13,10 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"RequestId"` | RequestId | UUID | True | A request identifier for the response. This is used to match the response message with the `SyncActiveZonesRequestV1` message. |
-| `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AV has successfully activated received the policy zones. <br/> - `Activated`: The AV has activated all zones and is adhering to their associated policies. <br/> - `Rejected`: The AV cannot adhere to one or more of the policies. In this case, the AV must not operate as it cannot guarantee safety. |
-| `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |
-| `"Zones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` that indicates the zones that have been activated or rejected by the AV |
+| `"ResponseId"` | ResponseId | UUID | True | Correlation identifier for this response. It SHALL be identical to the `SyncActiveZonesRequestV1.RequestId` it answers. Duplicate responses with the same `ResponseId` are idempotent and MAY be ignored after the first is processed. |
+| `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AV has successfully activated the received policy zones. <br/> - `Activated`: The AV has activated all zones and is adhering to their associated policies. <br/> - `Rejected`: The AV cannot adhere to one or more of the policies. In this case, the AV must not operate as it cannot guarantee safety. |
+| `"Reason"` | String Enum | String | False | The reason for rejecting the policy zone set when `Status` = `Rejected`. |
+| `"Zones"` | Array[`ZoneIdObject`] | Array[] | True | A list of `ZoneIdObject` indicating the zones that have been activated (or, if rejected, the zones that failed activation). |
 
 >[!NOTE]
 > The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `SyncActiveZonesResponseV1` message
@@ -36,18 +36,12 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesResponseV1": {
-    "RequestId": "00000000-0000-0000-0000-000000000001",
+    "ResponseId": "00000000-0000-0000-0000-000000000001",
     "Status": "Activated",
     "Zones": [
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000001"
-      },
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000002"
-      },
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000003"
-      }
+      { "ZoneId": "00000000-0000-0000-0000-000000000001" },
+      { "ZoneId": "00000000-0000-0000-0000-000000000002" },
+      { "ZoneId": "00000000-0000-0000-0000-000000000003" }
     ]
   }
 }
@@ -61,19 +55,13 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
   "Timestamp": "2021-09-01T12:00:00Z",
   "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
   "SyncActiveZonesResponseV1": {
-    "RequestId": "00000000-0000-0000-0000-000000000001",
+    "ResponseId": "00000000-0000-0000-0000-000000000001",
     "Status": "Rejected",
-    "Reason": "MaxActiveZonesExceeded"
+    "Reason": "MaxActiveZonesExceeded",
     "Zones": [
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000001"
-      },
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000002"
-      },
-      {
-        "ZoneId": "00000000-0000-0000-0000-000000000003"
-      }
+      { "ZoneId": "00000000-0000-0000-0000-000000000001" },
+      { "ZoneId": "00000000-0000-0000-0000-000000000002" },
+      { "ZoneId": "00000000-0000-0000-0000-000000000003" }
     ]
   }
 }
