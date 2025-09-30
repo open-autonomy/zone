@@ -63,7 +63,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
   "SyncActiveZonesResponseV1": {
     "RequestId": "00000000-0000-0000-0000-000000000001",
     "Status": "Rejected",
-    "Reason": "ZoneLimitReached"
+    "Reason": "MaxActiveZonesExceeded "
     "Zones": [
       {
         "ZoneId": "00000000-0000-0000-0000-000000000001"
