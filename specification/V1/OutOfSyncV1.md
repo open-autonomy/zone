@@ -11,6 +11,12 @@ This message is sent by the Autonomous Haulage System (AHS) to Fleet Management 
 
 ## Message Attributes
 
+The `OutOfSyncV1` is
+
+| Key | Value | Format | Required | Description |
+| --- | :---: | :---: | :---: | --- |
+| `"EventId"` | EventId | UUID | True | A unique identifier for the event. This is used to match the `SyncActiveZonesRequestV1.RequestId` with the event to prevent the need to act upon all requests. |
+
 The `OutOfSyncV1` message does not contain any additional attributes beyond the standard message headers.
 
 >[!NOTE]
@@ -25,6 +31,7 @@ The `OutOfSyncV1` message does not contain any additional attributes beyond the 
     "Timestamp": "2024-08-23T08:19:55.621Z",
     "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
     "OutOfSyncV1": {
+        "EventId": "00000000-0000-0000-0000-000000000001"
     }
 }
 ```
