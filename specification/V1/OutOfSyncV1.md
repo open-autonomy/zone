@@ -17,7 +17,6 @@ The `OutOfSyncV1` message consists of the following property:
 | --- | :---: | :---: | :---: | --- |
 | `"EventId"` | EventId | UUID | True | Correlation identifier for this out-of-sync notification. The FMS SHALL reuse this value as `SyncActiveZonesRequestV1.RequestId` when responding. Duplicate `OutOfSyncV1` messages with the same `EventId` after a corresponding `SyncActiveZonesRequestV1` has been processed are idempotent and MAY be ignored. |
 
-The `OutOfSyncV1` message does not contain any additional attributes beyond the standard message headers.
 
 >[!NOTE]
 > The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `OutOfSyncV1` message 
