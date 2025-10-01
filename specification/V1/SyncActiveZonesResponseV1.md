@@ -15,19 +15,23 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"ResponseId"` | ResponseId | UUID | True | Correlation identifier for this response. It SHALL be identical to the `SyncActiveZonesRequestV1.RequestId` it answers. Duplicate responses with the same `ResponseId` are idempotent and MAY be ignored after the first is processed. |
 | `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AV has successfully activated the received policy zones. <br/> - `Activated`: The AV has activated all zones and is adhering to their associated policies. <br/> - `Rejected`: The AV cannot adhere to one or more of the policies. In this case, the AV must not operate as it cannot guarantee safety. |
-| `"Reason"` | String Enum | String | False | The reason for rejecting the policy zone set when `Status` = `Rejected`. |
+| `"Reason"` | String Enum | String | False | High-level reason for rejecting the entire set when `Status` = `Rejected` (e.g. a global failure). Use per-zone reasons in `RejectedZones` for granular causes. |
+| `"RejectedZones"` | Array[`RejectedZoneObject`] | Array[] | False | Granular list of zones the AV failed to activate along with per-zone rejection reasons. Present only when `Status` = `Rejected`. |
 
 >[!NOTE]
 > The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `SyncActiveZonesResponseV1` message
 
-### ZoneIdObject
+### RejectedZoneObject
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"ZoneId"` | ZoneId | UUID | True | The policy zone id |
+| `"ZoneId"` | ZoneId | UUID | True | Identifier of the zone that failed activation |
+| `"Reason"` | String Enum | String | True | Specific reason this zone could not be activated (e.g. `GeometryUnsupported`, `PolicyUnsupported`, `InternalError`). |
 
+> [!TIP]
+> Use `Reason` at the top level for a single global failure (e.g. `MaxActiveZonesExceeded`). Use `RejectedZones[i].Reason` for individual zones when some, but not all, failed. If both are present, the top-level `Reason` should summarize while per-zone reasons provide detail.
 
 ## Examples
-### Typical Message
+### Activated (All Zones Succeeded)
 ```JSON
 {
   "Protocol": "Open-Autonomy",
@@ -41,7 +45,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 }
 ```
 
-### Rejection Message
+### Rejected (Global Reason Only)
 ```JSON
 {
   "Protocol": "Open-Autonomy",
@@ -52,6 +56,24 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
     "ResponseId": "00000000-0000-0000-0000-000000000001",
     "Status": "Rejected",
     "Reason": "MaxActiveZonesExceeded"
+  }
+}
+```
+
+### Rejected (Per-Zone Granular Reasons)
+```JSON
+{
+  "Protocol": "Open-Autonomy",
+  "Version": 1,
+  "Timestamp": "2021-09-01T12:00:00Z",
+  "EquipmentId": "e4de3723-a315-4506-b4e9-537088a0eabf",
+  "SyncActiveZonesResponseV1": {
+    "ResponseId": "00000000-0000-0000-0000-000000000001",
+    "Status": "Rejected",
+    "RejectedZones": [
+      { "ZoneId": "00000000-0000-0000-0000-000000000001", "Reason": "GeometryUnsupported" },
+      { "ZoneId": "00000000-0000-0000-0000-000000000002", "Reason": "PolicyUnsupported" }
+    ]
   }
 }
 ```
