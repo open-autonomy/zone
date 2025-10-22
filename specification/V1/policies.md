@@ -12,6 +12,7 @@ This document describes the policies that can be applied to policy zones created
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
+- [Controlled Access](#controlled-access)
 
 
 ## Exclusion
@@ -118,6 +119,36 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
     "name": "Rough Road Area",
     "policies": {
       "roughRoad": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+---
+
+## Controlled Access
+A controlled access policy specifies that the AV shall not enter the zone unless it has been granted permission. This zone is typically used by an operator to manage vehicles accessing their work area.
+
+* An AV is granted permission if the AV has been dispatched to a spot inside the zone.
+    * A spot is considered inside the zone if the spot's pose is located inside the zone.
+* AVs that are inside the zone are granted permission implicitly and are permitted to operate until they have left the zone.
+    * AVs are considered to be inside the zone if any part of the AV's footprint is inside the zone.
+
+### Controlled Access Policy Attributes
+Empty `"controlledAccess"` object `{}` is used to indicate that the controlled access policy is in effect.
+
+### Example
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+  "properties": {
+    "name": "Controlled Access Area",
+    "policies": {
+      "controlledAccess": {}
     }
   },
   "type": "Feature"

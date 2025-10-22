@@ -16,6 +16,7 @@ The following policies are defined in this specification.
 - [Speed Limit](policies.md#speed-limit)
 - [Low Traction](policies.md#low-traction)
 - [Rough Road](policies.md#rough-road)
+- [Controlled Access](policies.md#controlled-access)
 
 > [!WARNING]
 > This list is not exhaustive and more policies can be added in the future.
@@ -36,3 +37,4 @@ The following messages are defined in this specification for managing policy zon
 - [OutOfSyncV1](OutOfSyncV1.md)
 - [SyncActiveZonesRequestV1](SyncActiveZonesRequestV1.md)
 - [SyncActiveZonesResponseV1](SyncActiveZonesResponseV1.md)
+
