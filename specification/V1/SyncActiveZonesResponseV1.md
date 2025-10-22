@@ -15,8 +15,8 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"ResponseId"` | ResponseId | UUID | True | Correlation identifier for this response. It SHALL be identical to the `SyncActiveZonesRequestV1.RequestId` it answers. Duplicate responses with the same `ResponseId` are idempotent and MAY be ignored after the first is processed. |
 | `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AV has successfully activated the received policy zones. <br/> - `Activated`: The AV has activated all zones and is adhering to their associated policies. <br/> - `Rejected`: The AV cannot adhere to one or more of the policies. In this case, the AV must not operate as it cannot guarantee safety. |
-| `"Reason"` | String Enum | String | False | High-level reason for rejecting the entire set when `Status` = `Rejected` (e.g. a global failure). Use per-zone reasons in `RejectedZones` for granular causes. |
-| `"RejectedZones"` | Array[`RejectedZoneObject`] | Array[] | False | Granular list of zones the AV failed to activate along with per-zone rejection reasons. Present only when `Status` = `Rejected`. |
+| `"Reason"` | String Enum | String | True | High-level reason for rejecting the entire set when `Status` = `Rejected` (e.g. a global failure). Use per-zone reasons in `RejectedZones` for granular causes. Required if `Status` = `Rejected`. |
+| `"RejectedZones"` | Array[`RejectedZoneObject`] | Array[] | False | Granular list of zones the AV failed to activate along with per-zone rejection reasons. Present only when some, but not all, zones failed. |
 
 >[!NOTE]
 > The top-level message headers should contain the `EquipmentId` which indicate the origin AV of the `SyncActiveZonesResponseV1` message
@@ -70,10 +70,10 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
   "SyncActiveZonesResponseV1": {
     "ResponseId": "00000000-0000-0000-0000-000000000001",
     "Status": "Rejected",
+    "Reason": "PartialFailure",
     "RejectedZones": [
       { "ZoneId": "00000000-0000-0000-0000-000000000001", "Reason": "GeometryUnsupported" },
       { "ZoneId": "00000000-0000-0000-0000-000000000002", "Reason": "PolicyUnsupported" }
     ]
   }
 }
-```
