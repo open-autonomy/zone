@@ -61,8 +61,8 @@ sequenceDiagram
 
     AHS->>AV 1: Activate Policy Zone
     Note over AV 1: Unable to immediately adhere to policy
-    AV 1->>AHS: Accepted
-    AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+    AV 1->>AHS: Pending
+    AHS->>FMS: ActivateZoneResponseV1: Status "Pending"
 
     Note Over AV N: AV N connects
 
@@ -147,12 +147,12 @@ sequenceDiagram
 
 ### Expected Offline Scenario
 
-In the event that the truck has been parked up and powered off, the AHS may choose to accept the policy zone change request on behalf of the truck.
+In the event that the truck has been parked up and powered off, the AHS may choose to return the policy zone change request on behalf of the truck with pending.
 
 > [!IMPORTANT]
 > It is the responsibility of the AHS to ensure that it is safe to respond on behalf of an AV.
 
-The following message provides an example of a policy zone change request that is accepted after the truck has been powered off.
+The following message provides an example of a policy zone change request that is pending after the truck has been powered off.
 
 ```json
 {
@@ -162,7 +162,7 @@ The following message provides an example of a policy zone change request that i
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Status": "Accepted"
+        "Status": "Pending"
     }
 }
 ```
@@ -224,12 +224,12 @@ In such an event, the FMS may attempt to continue sending the policy zone change
 
 ### Loss of Comms Scenario 2 - Truck comes to stop after comms loss timeout
 
-In the event that a truck has lost connection to the AHS, the AHS may choose to accept the policy zone change request after the truck can be guaranteed to have come to a stop due to the comms loss timeout.
+In the event that a truck has lost connection to the AHS, the AHS may choose to return the policy zone change request after the truck can be guaranteed to have come to a stop due to the comms loss timeout with pending.
 
 > [!IMPORTANT]
 > It is the responsibility of the AHS to ensure that it is safe to respond on behalf of an AV.
 
-The following message provides an example of a policy zone change request that is accepted after the truck has come to a stop.
+The following message provides an example of a policy zone change request that is pending after the truck has come to a stop.
 
 ```json
 {
@@ -239,7 +239,7 @@ The following message provides an example of a policy zone change request that i
     "ActivateZoneResponseV1": {
         "EquipmentId": "e6d895b0-e377-4567-8b1a-8d2a4f3104ff",
         "ZoneId": "00000000-0000-0000-0000-000000000001",
-        "Status": "Accepted"
+        "Status": "Pending"
     }
 }
 ```
