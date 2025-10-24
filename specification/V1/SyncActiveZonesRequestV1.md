@@ -41,7 +41,6 @@ The Zone object is a GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc
 ### Properties Object
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
 | `"policies"` | Policies | Object | True | A set of policies that the AV should adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
