@@ -8,11 +8,11 @@ This message is sent by the Fleet Management System (FMS) to the Autonomous Haul
 
 | Sender | Triggered by | Triggers |
 | --- | --- | --- |
-| `FMS`  | `OutOfSyncV1` | The AV to adhere to the existing activated policy zones, and fire off `SyncAllActiveZonesResponseV1` messages |
+| `FMS`  | `OutOfSyncV1` | The AV to adhere to the existing activated policy zones, and fire off `SyncActiveZonesResponseV1` messages |
 
 ## Message Attributes
 
-The `SyncAllActiveZonesRequestV1` is
+The `SyncActiveZonesRequestV1` is
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
@@ -20,7 +20,7 @@ The `SyncAllActiveZonesRequestV1` is
 | `"Zones"` | | Array[Zone] | True |An array of [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist in the Zone Object. |
 
 >[!NOTE]
-> The top-level message headers should contain the `EquipmentId`, indicating which AV the `SyncAllActiveZonesRequestV1` message is for.
+> The top-level message headers should contain the `EquipmentId`, indicating which AV the `SyncActiveZonesRequestV1` message is for.
 
 ### Zone Object
 The Zone object is a GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc7946) compatible feature object that describes the policy zone. It contains the following properties:
