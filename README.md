@@ -56,7 +56,6 @@ stateDiagram-v2
 ```mermaid
 stateDiagram-v2
     [*] --> Pending : Incoming ActivateZoneRequest
-    [*] --> Pending : Incoming SyncActiveZonesRequest
     Pending --> Pending : Policy Zone postpone activation
     Pending --> Active : AV activated Policy Zone
     Pending --> Deleted : Incoming DeactivateZoneRequest
