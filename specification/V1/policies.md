@@ -152,7 +152,7 @@ A traffic permission policy indicates that the AV must obtain permission from th
 
 The free plan policy indicates that the AV is allowed to plan its own path within the zone, rather than following a predefined route. This policy is typically applied to roads where the AV needs to navigate around obstacles or other vehicles. 
 
-> ![IMPORTANT]
+> [!IMPORTANT]
 > This policy should be used in conjunction with the traffic permission policy to avoid conflicts between vehicles travelling in opposite directions.
 
 ### Example
