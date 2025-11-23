@@ -12,6 +12,8 @@ This document describes the policies that can be applied to policy zones created
 - [Speed Limit](#speed-limit)
 - [Low Traction](#low-traction)
 - [Rough Road](#rough-road)
+- [Traffic Permission](#traffic-permission)
+- [Free Plan](#free-plan)
 
 
 ## Exclusion
@@ -118,6 +120,53 @@ Empty `"roughRoad"` object `{}` is used to indicate that the rough road policy i
     "name": "Rough Road Area",
     "policies": {
       "roughRoad": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Traffic Permission
+
+A traffic permission policy indicates that the AV must obtain permission from the FMS before entering the zone. This policy is typically applied in areas where traffic control is required, such as construction zones or areas with restricted access (see [Traffic Management](https://github.com/open-autonomy/traffic-management) for more information).
+
+### Example
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+  "properties": {
+    "name": "Traffic Permission Area",
+    "policies": {
+      "trafficPermission": {}
+    }
+  },
+  "type": "Feature"
+}
+```
+
+## Free Plan
+
+The free plan policy indicates that the AV is allowed to plan its own path within the zone, rather than following a predefined route. This policy is typically applied to roads where the AV needs to navigate around obstacles or other vehicles. 
+
+> ![IMPORTANT]
+> This policy should be used in conjunction with the traffic permission policy to avoid conflicts between vehicles travelling in opposite directions.
+
+### Example
+```json
+{
+  "geometry": {
+    "coordinates": ...,
+    "type": "Polygon"
+  },
+  "id": "3d3d1bcf-5562-46eb-87a0-cdef15669f9d",
+  "properties": {
+    "name": "Free Plan Area",
+    "policies": {
+      "freePlan": {}
     }
   },
   "type": "Feature"
