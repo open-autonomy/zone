@@ -8,7 +8,7 @@ This message is sent by the Fleet Management System (FMS) to the Autonomous Haul
 
 ## Message Attributes
 
-The `ActivateZoneResponseV1` message consists of the following properties.
+The `ActivateZoneRequestV1` message consists of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
