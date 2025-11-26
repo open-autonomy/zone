@@ -147,7 +147,7 @@ sequenceDiagram
 
 ### Expected Offline Scenario
 
-In the event that the truck has been parked up and powered off, the AHS may choose to return the policy zone change request on behalf of the truck with pending.
+In the event that the truck has been parked up and powered off, the AHS may choose to respond to the policy zone change request on behalf of the truck with a Pending status.
 
 > [!IMPORTANT]
 > It is the responsibility of the AHS to ensure that it is safe to respond on behalf of an AV.
