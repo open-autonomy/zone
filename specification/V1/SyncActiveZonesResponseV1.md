@@ -15,7 +15,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"ResponseId"` | ResponseId | UUID | True | Correlation identifier for this response. It SHALL be identical to the `SyncActiveZonesRequestV1.RequestId` it answers. Duplicate responses with the same `ResponseId` are idempotent and MAY be ignored after the first is processed. |
 | `"Status"` | [`Activated`, `Rejected`] | String | True | Indicates whether the AV has successfully activated the received policy zones. <br/> - `Activated`: The AV has activated all zones and is adhering to their associated policies. <br/> - `Rejected`: The AV cannot adhere to one or more of the policies. In this case, the AV must not operate as it cannot guarantee safety. |
-| `"Reason"` | String Enum | String | Conditional | Required if `Status` = `Rejected`. { MultipleZoneRejections, DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyZones, TooManyCoordinates, RobotFailure, Timeout } |
+| `"Reason"` | String Enum | String | Conditional | Required if `Status` = `Rejected`. { MultipleZoneRejections, DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyZones, TooManyCoordinates, RobotFailure, Timeout, UnknownZoneRejection } |
 | `"RejectedZones"` | Array[`RejectedZoneObject`] | Array[] | False | Granular list of zones the AV failed to activate along with per-zone rejection reasons. Present only when some, but not all, zones failed. |
 
 >[!NOTE]
@@ -25,7 +25,7 @@ The `SyncActiveZonesResponseV1` message consists of the following properties.
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"ZoneId"` | ZoneId | UUID | True | Identifier of the zone that failed activation |
-| `"Reason"` | String Enum | String | True | { DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyCoordinates, RobotFailure, Timeout } |
+| `"Reason"` | String Enum | String | True | { DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyCoordinates, RobotFailure, Timeout, UnknownZoneRejection } |
 
 > [!TIP]
 > Use `Reason` at the top level for a single global failure (e.g. `MaxActiveZonesExceeded`). Use `RejectedZones[i].Reason` for individual zones when some, but not all, failed. If both are present, the top-level `Reason` should summarize while per-zone reasons provide detail.
