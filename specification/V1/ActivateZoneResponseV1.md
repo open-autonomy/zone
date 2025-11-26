@@ -15,7 +15,7 @@ The `ActivateZoneResponseV1` message consists of the following properties.
 | --- | :---: | :---: | :---: | --- |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
 | `"Status"` | [`Pending`, `Activated`, `Rejected`] | String | True | Determine whether the AV have pending, activated or rejected the policy zone request.<br/>- `Pending`: The AV has received the policy zone and has scheduled it for activation.<br/>- `Activated`: The AV has activated the policy zone as it is now adhering to the associated policies.<br/>- `Rejected`: The AV is unable to activate the policy zone due to an error explained in `"Reason"` |
-| `"Reason"` | String Enum | String | False | { DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyCoordinates, RobotFailure, Timeout, UnknownZoneRejection, UnexpectedOffline } |
+| `"Reason"` | String Enum | String | False | { DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyCoordinates, RobotFailure, Timeout, OutOfSync, UnknownZoneRejection, UnexpectedOffline } |
 
 > [!IMPORTANT]
 
