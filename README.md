@@ -27,7 +27,32 @@ Policy zones have a lifecycle that is managed by the FMS. This lifecycle include
 
 The following state machine describes the lifecycle of a policy zone as it transitions between these states:
 
-![Policy Zone State Machine](draw.io/PolicyZoneStateMachine.svg)
+### Policy Zone State Machine In FMS
+
+```mermaid
+stateDiagram-v2
+    PendingDelete : Pending Delete
+
+    [*] --> Pending : Policy Zone created in FMS
+    Pending --> Pending : Policy Zone pending activation by AVs
+    Pending --> Active : Policy Zone activated by all AVs
+    Pending --> PendingDelete: Policy Zone flagged for deletion in FMS
+    Active --> PendingDelete : Policy Zone flagged for deletion in FMS
+    PendingDelete --> Deleted : Policy Zone deactivated by all AVs
+    Deleted --> [*] : Policy Zone removed from FMS
+```
+
+### Policy Zone State Machine In AV
+
+```mermaid
+stateDiagram-v2
+    [*] --> Pending : Incoming ActivateZoneRequest
+    Pending --> Pending : Policy Zone postpone activation
+    Pending --> Active : AV activated Policy Zone
+    Pending --> Deleted : Incoming DeactivateZoneRequest
+    Active --> Deleted : Incoming DeactivateZoneRequest
+    Deleted --> [*] : Policy Zone removed
+```
 
 > [!NOTE]
 > Policy zones that are rejected are still considered pending and can be re-sent to the truck for activation at a later time.

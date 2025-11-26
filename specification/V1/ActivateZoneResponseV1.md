@@ -14,13 +14,13 @@ The `ActivateZoneResponseV1` message consists of the following properties.
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
 | `"ZoneId"` | ZoneId | UUID | True | The policy zone id in which the truck is responding to |
-| `"Status"` | [`Accepted`, `Activated`, `Rejected`] | String | True | Determine whether the AV have accepted, activated or rejected the policy zone request.<br/>- `Accepted`: The AV has processed the policy zone and has scheduled it for activation.<br/>- `Activated`: The AV has activated the policy zone as it is now adhering to the associated policies.<br/>- `Rejected`: The AV is unable to activate the policy zone due to an error explained in `"Reason"` |
-| `"Reason"` | String Enum | String | False | The reason for rejecting policy zone request |
+| `"Status"` | [`Pending`, `Activated`, `Rejected`] | String | True | Determine whether the AV have pending, activated or rejected the policy zone request.<br/>- `Pending`: The AV has received the policy zone and has scheduled it for activation.<br/>- `Activated`: The AV has activated the policy zone as it is now adhering to the associated policies.<br/>- `Rejected`: The AV is unable to activate the policy zone due to an error explained in `"Reason"` |
+| `"Reason"` | String Enum | String | False | { DuplicateZoneId, MissingZoneId, MissingPolicies, NonClosedPolygon, TooFewCoordinates, TooManyCoordinates, RobotFailure, Timeout, OutOfSync, UnknownZoneRejection, UnexpectedOffline } |
 
 > [!IMPORTANT]
 
 - AV shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
-- An AV may choose to send an `Activate` response without sending an `Accepted` response first. In this case, the AV is indicating that it has activated the policy zone and is adhering to the specified policies. An AV shall send an `Accepted` response if it cannot immediately adhere to the policy zone.
+- An AV may choose to send an `Activate` response without sending a `Pending` response first. In this case, the AV is indicating that it has activated the policy zone and is adhering to the specified policies. An AV shall send a `Pending` response if it cannot immediately adhere to the policy zone.
 
 > AV shall only `Reject` a policy zone request if there is an error preventing it from processing the policy zone request.
 

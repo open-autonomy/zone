@@ -8,11 +8,11 @@ This message is sent by the Fleet Management System (FMS) to the Autonomous Haul
 
 ## Message Attributes
 
-The `ActivateZoneResponseV1` message consists of the following properties.
+The `ActivateZoneRequestV1` message consists of the following properties.
 
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"Zones"` | | Array[Zone] | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
+| `"Zone"` | Zone | Object | True | A single [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946) object consist of the following properties. |
 
 >[!NOTE]
 > The top-level message headers should contain the `EquipmentId`, indicating which AV the `ActivateZoneRequestV1` message is for.
@@ -36,9 +36,8 @@ The Zone object is a GeoJSON [RFC7946](https://datatracker.ietf.org/doc/html/rfc
 ### Properties Object
 | Key | Value | Format | Required | Description |
 | --- | :---: | :---: | :---: | --- |
-| `"id"` | ZoneId | String | True | The policy zone id |
 | `"name"` |  | String | True | The name of the policy zone |
-| `"activateDeadline"` | DateTime | ISO8601 UTC | False | Indicates when AV the latest time by which AV that has accepted a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, AV should aim to adhere to the policy by this time but it is not strictly required to do so if it is not possible or safe to do so. |
+| `"activationDeadline"` | DateTime | ISO8601 UTC | False | Indicates the latest time by which an AV that is pending a policy zone should transition to activating it. <br/> **NOTE** This is a soft deadline, AV should aim to adhere to the policy by this time but it is not strictly required to do so if it is not possible or safe to do so. |
 | `"policies"` | Policies | Object | True | A set of policies that the AV shall adhere to within the zone. <br/><br/> See [policies](policies.md) for the possible policies and their properties. |
 
 

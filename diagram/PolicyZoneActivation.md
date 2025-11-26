@@ -21,16 +21,16 @@ sequenceDiagram
     par AV 1
         FMS->>AHS: Send ActivateZoneRequestV1 to AV 1
         AHS->>AV 1: Activate Policy Zone
-        AV 1->>AHS: Accept
-        AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+        AV 1->>AHS: Pending
+        AHS->>FMS: ActivateZoneResponseV1: Status "Pending"
         AV 1->>AV 1: Adheres to Policy
         AV 1->>AHS: Activated
         AHS->>FMS: ActivateZoneResponseV1: Status "Activated"
     and AV N
         FMS->>AHS: Send ActivateZoneRequestV1 to AV N
         AHS->>AV N: Activate Policy Zone
-        AV N->>AHS: Accept
-        AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+        AV N->>AHS: Pending
+        AHS->>FMS: ActivateZoneResponseV1: Status "Pending"
         Note Over AV N: Unable to immediately adhere to policy
         AV N->>AV N: Adheres to Policy
         AV N->>AHS: Activated
@@ -44,10 +44,10 @@ sequenceDiagram
 ```
 
 > [!TIP]
-> The 2-step activation confirmation helps the system avoid unnecessary retries and allows for better transparency to be provided to the user. Accept allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to.
+> The 2-step activation confirmation helps the system avoid unnecessary retries and allows for better transparency to be provided to the user. Pending allows the AV to respond to the request immediately, even if it cannot adhere to the policy immediately. Activate is used to confirm when the policy is being adhered to.
 
 ## Policy Zone Activation Deadline Exceed
-The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time. Once the activation deadline is reached, the AV must make best effort to adhere to the policy. Once the AV is adhereing to the policy, it should send its policy Acivation response.
+The policy zone can be created with the `activationDealine` property. This field is an indicative field that lets the AV know it should start to adhere to the policy if possible. However, it is not a strict demand and the AV is allowed to defer compliance up until the specified time. Once the activation deadline is reached, the AV must make best effort to adhere to the policy. Once the AV is adhering to the policy, it should send its policy Acivation response.
 
 > [!NOTE]
 > The inclusion of the activation deadline does not change the activation process from the perspective of the FMS. For the FMS to consider the zone active, the FMS still needs to receive confirmation from all AVs that the zone has been activated.
@@ -70,10 +70,10 @@ sequenceDiagram
     AHS->>AV 1: Activate Policy Zone
 
     Note Over AV 1: Unable to immediately adhere to policy
-    AV 1->>AHS: Accept
-    AHS->>FMS: ActivateZoneResponseV1: Status "Accepted"
+    AV 1->>AHS: Pending
+    AHS->>FMS: ActivateZoneResponseV1: Status "Pending"
 
-    Note Over AV 1: Activation Dealine Exceeded
+    Note Over AV 1: Activation Deadline Exceeded
     Note Over AV 1: Proceed to Adheres to Policy ...
     Note Over AV 1: Adhering to Policy
     AV 1->>AV 1: Adheres to Policy

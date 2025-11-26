@@ -23,12 +23,12 @@ sequenceDiagram
     par AV 1
         FMS->>AHS: Sends DeactivateZoneRequestV1 to AV 1
         AHS->>AV 1: Delete Policy Zone
-        AV 1->>AHS: Accept
+        AV 1->>AHS: Deactivated
         AHS->>FMS: DeactivateZoneResponseV1
     and AV N
         FMS->>AHS: Sends DeactivateZoneRequestV1 to AV N
         AHS->>AV N: Delete Policy Zone
-        AV N->>AHS: Accept
+        AV N->>AHS: Deactivated
         AHS->>FMS: DeactivateZoneResponseV1
     end
 
