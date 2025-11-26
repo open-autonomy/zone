@@ -73,7 +73,7 @@ sequenceDiagram
     AV 1->>AHS: Pending
     AHS->>FMS: ActivateZoneResponseV1: Status "Pending"
 
-    Note Over AV 1: Activation Dealine Exceeded
+    Note Over AV 1: Activation Deadline Exceeded
     Note Over AV 1: Proceed to Adheres to Policy ...
     Note Over AV 1: Adhering to Policy
     AV 1->>AV 1: Adheres to Policy
